@@ -330,7 +330,8 @@ return [
         ],
         [
             'text' => 'Racks',
-            'route'  => 'admin.home',/*  'admin.racks.index', */
+            'route'  => 'admin.racks.index',/*  'admin.racks.index', */
+            'active' => ['admin/racks*'],
             'icon' => 'fab fa-fw fa-buffer',
         ],
         [
@@ -366,7 +367,8 @@ return [
             'text'       => "Registro de IP's",
             'icon_color' => 'red',
             'icon' => 'fas fa-fw fa-eye',
-            'route'        => 'admin.home',/*  'admin.ips.index', */
+            'route'        => 'admin.ips.index',/*  'admin.ips.index', */
+            'active' => ['admin/ips*'],
         ],
     ],
 
