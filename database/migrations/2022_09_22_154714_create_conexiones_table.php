@@ -23,10 +23,10 @@ class CreateConexionesTable extends Migration
             $table->date('fecha_impactada');
             
             $table->unsignedBigInteger('conmutador_id')->nullable();
-            $table->unsignedBigInteger('ip_id');
+            $table->unsignedBigInteger('ip_id')->nullable();
 
             $table->foreign('conmutador_id')->references('id')->on('conmutadores')->onDelete('set null')->onUpdate('cascade');
-            $table->foreign('ip_id')->references('id')->on('ips')->onUpdate('cascade');
+            $table->foreign('ip_id')->references('id')->on('ips')->onDelete('set null')->onUpdate('cascade');
             //No se que se hace si se elimina un ip, por eso no pongo una restricción de clave foránea.
 
             $table->timestamps();

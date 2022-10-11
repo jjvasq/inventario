@@ -99,6 +99,6 @@ class RackController extends Controller
     {
         $rack->delete();
 
-        return redirect()->route('admin.racks.index')->with('info', 'El Rack se eliminó correctamente');
+        return redirect()->route('admin.racks.index')->with('eliminar', 'ok');
     }
 }

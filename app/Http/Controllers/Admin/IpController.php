@@ -102,6 +102,6 @@ class IpController extends Controller
     public function destroy(Ip $ip)
     {
         $ip->delete();
-        return redirect()->route('admin.ips.index')->with('info', 'El Ip, se eliminó correctamente');
+        return redirect()->route('admin.ips.index')->with('eliminar', 'ok');
     }
 }

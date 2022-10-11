@@ -8,49 +8,7 @@
 @stop
 
 @section('content')
-
-{{-- <p>Hola mundo</p> --}}
     @livewire('admin.ips-index')
-    {{-- <div class="card-body">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>IP</th>
-                    <th>Estado</th>
-                    <th colspan="2" class="text-bold text-danger text-center">ACCIONES</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($ips as $ip)
-                    <tr>
-                        <td>{{$ip->id}}</td>
-                        <td>{{$ip->direccion_ip}}</td>
-                        <td>
-                            @if ($ip->estado == 1)
-                                <small class="text-success">Activo</small>
-                            @else
-                                <small class="text-info">LIBRE</small>
-                            @endif
-                        </td>
-                        <td width="10px">
-                            <a class="btn btn-primary btn-sm" href="{{route('admin.ips.edit', $ip)}}">Editar</a>
-                        </td>
-                        <td width="10px">
-                            <form action="{{route('admin.ips.destroy', $ip)}}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    <div class="card-footer">
-        {{$ips->links()}}
-    </div> --}}
 @stop
 
 @section('css')
@@ -58,5 +16,55 @@
 @stop
 
 @section('js')
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script>
+        function muestraSweet() {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'El botón está funcionando.!',
+                showConfirmButton: false,
+                timer: 3500
+            })
+        }
+    </script> --}}
+
+    @if (session('eliminar') == 'ok')
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Se Eliminó Correctamente.!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
+
+    <script>
+        $('.formulario-eliminar').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Estás seguro de Eliminar?',
+                text: "No se podrá revertir!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Si, eliminar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                    /* Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ) */
+                }
+            })
+        });
+    </script>
     <script> console.log('Hi!'); </script>
 @stop

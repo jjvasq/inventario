@@ -86,7 +86,7 @@ class SectorController extends Controller
 
         $sectore->update($request->all());
         
-        return redirect()->route('admin.sectores.edit', $sectore)->with('info', 'El Sector se actualizó con éxito');
+        return redirect()->route('admin.sectores.index', $sectore)->with('info', 'El Sector se actualizó con éxito');
     }
 
     /**
@@ -99,6 +99,6 @@ class SectorController extends Controller
     {
         $sectore->delete();
 
-        return redirect()->route('admin.sectores.index')->with('info', 'El Sector se eliminó con éxito.');
+        return redirect()->route('admin.sectores.index')->with('eliminar', 'ok');
     }
 }

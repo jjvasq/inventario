@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Ip;
+use App\Models\Sector;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class IpsIndex extends Component
+class SectoresIndex extends Component
 {
     use WithPagination;
 
@@ -17,17 +17,18 @@ class IpsIndex extends Component
     public $direction = 'desc';
     public $cant = 3;
 
+
     public function updatingSearch(){
         $this->resetPage();
     }
 
     public function render()
     {
-        /* $ips = Ip::all(); */
-        $ips = Ip::where('direccion_ip', 'LIKE', "%".$this->search."%")
-                    ->orderby($this->sort, $this->direction)
-                    ->paginate($this->cant);
-        return view('livewire.admin.ips-index', compact('ips'));
+        $sectores = Sector::where('nombre', 'LIKE', "%".$this->search."%")
+                            ->orWhere('descripcion', 'LIKE', "%".$this->search."%") 
+                            ->orderby($this->sort, $this->direction)                   
+                            ->paginate($this->cant);
+        return view('livewire.admin.sectores-index', compact('sectores'));
     }
 
     //Ordena según parámetro.
