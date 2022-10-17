@@ -18,9 +18,9 @@ class Conmutador extends Model
         return $this->hasMany(Conexion::class);
     }
 
-    //Relación uno a uno con Sector
+    //Relación uno a uno con Sector vuelta
     public function sector(){
-        return $this->hasOne(Sector::class);
+        return $this->belongsTo(Sector::class);
     }
 
     //Relación uno a muchos inversa con Racks

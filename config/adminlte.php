@@ -325,7 +325,7 @@ return [
         ],
         [
             'text' => 'Switchs',
-            'route'  => 'admin.home',/* 'admin.conmutadores.index', */
+            'route'  => 'admin.conmutadores.index',/* 'admin.conmutadores.index', */
             'icon' => 'fas fa-fw fa-handshake',
         ],
         [

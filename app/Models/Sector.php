@@ -20,7 +20,7 @@ class Sector extends Model
 
     //Relación uno a uno inversa con Conmutador
     public function conmutador(){
-        return $this->belongsTo(Conmutador::class);
+        return $this->hasOne(Conmutador::class);
     }
 
     //Relación uno a muchos inversa con Puesto
