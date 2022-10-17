@@ -75,7 +75,20 @@
                             <td>{{$sector->id}}</td>
                             <td>{{$sector->nombre}}</td>
                             <td>{{$sector->descripcion}}</td>
-                            <td>{{$sector->referencia_lugar}}</td>
+                            <td>
+                                <div class="btn-group ml-3">
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown">
+                                        <i class="fas fa-bars"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <p class="mx-3">{{ $sector->referencia_lugar }}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                            {{-- <td>{{$sector->referencia_lugar}}</td> --}}
                             <td>
                                 @if ($sector->planta == 1)
                                     <small class="text-success">Planta Alta</small>

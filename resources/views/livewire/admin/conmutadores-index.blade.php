@@ -80,7 +80,7 @@
                             <td>{{ $conmutador->numero }}</td>
                             <td>{{ $conmutador->marca }}</td>
                             <td>
-                                <div class="btn-group float-right">
+                                <div class="btn-group ml-3">
                                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
                                         data-toggle="dropdown">
                                         <i class="fas fa-bars"></i>
@@ -108,13 +108,6 @@
                                 @endif
 
                             </td>
-                            {{--  <td>
-                                @if ($conmutador->sector_id != null)
-                                    {{$conmutador->sector->nombre}}
-                                @else
-                                    <span>Sin Asignar</span>
-                                @endif
-                            </td> --}}
                             <td>{{ $conmutador->fecha_limpieza }}</td>
                             <td width="10px">
                                 <a class="btn btn-primary btn-sm"

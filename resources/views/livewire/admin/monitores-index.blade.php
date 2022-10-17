@@ -109,14 +109,6 @@
                                     <small class="text-secondary">Baja</small>
                                 @endif
                             </td>
-                           
-                            {{--  <td>
-                                @if ($conmutador->sector_id != null)
-                                    {{$conmutador->sector->nombre}}
-                                @else
-                                    <span>Sin Asignar</span>
-                                @endif
-                            </td> --}}
                             <td>{{ $monitor->equipamiento_id }}</td>
                             <td width="10px">
                                 <a class="btn btn-primary btn-sm"

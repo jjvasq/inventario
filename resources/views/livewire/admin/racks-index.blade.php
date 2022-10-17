@@ -76,7 +76,19 @@
                             <td>{{$rack->id}}</td>
                             <td>{{$rack->nombre}}</td>
                             <td>{{$rack->descripcion}}</td>
-                            <td>{{$rack->referencia_lugar}}</td>
+                            <td>
+                                <div class="btn-group ml-3">
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown">
+                                        <i class="fas fa-bars"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <p class="mx-3">{{ $rack->referencia_lugar }}</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
                             <td>
                                 @if ($rack->planta == 1)
                                     <small class="text-success">Planta Alta</small>
