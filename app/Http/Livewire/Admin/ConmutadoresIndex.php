@@ -24,7 +24,8 @@ class ConmutadoresIndex extends Component
 
     public function render()
     {
-        $conmutadores = Conmutador::where('numero', 'LIKE', "%" . $this->search . "%")
+        $conmutadores = Conmutador::where('id', 'LIKE', "%" . $this->search . "%")
+            ->orWhere('numero', 'LIKE', "%" . $this->search . "%")
             ->orWhere('marca', 'LIKE', "%" . $this->search . "%")
             ->orderby($this->sort, $this->direction)
             ->paginate($this->cant);

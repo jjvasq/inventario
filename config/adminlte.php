@@ -356,7 +356,7 @@ return [
                         [
                             'text'    => 'Monitores',
                             'icon' => 'fas fa-fw fa-desktop',
-                            'route'     => 'admin.home',/*  'admin.monitores.index', */
+                            'route'     => 'admin.monitores.index',/*  'admin.monitores.index', */
                         ],
                     ],
                 ],

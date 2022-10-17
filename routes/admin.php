@@ -1,9 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\ConmutadorController;
+use App\Http\Controllers\Admin\CpuController;
+use App\Http\Controllers\Admin\EquipamientoController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ImpresoraController;
 use App\Http\Controllers\Admin\IpController;
+use App\Http\Controllers\Admin\MonitorController;
 use App\Http\Controllers\Admin\RackController;
+use App\Http\Controllers\Admin\ScannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SectorController;
 
@@ -18,6 +23,16 @@ Route::resource('racks', RackController::class)->names('admin.racks');
 Route::resource('ips', IpController::class)->names('admin.ips');
 
 Route::resource('conmutadores', ConmutadorController::class)->names('admin.conmutadores');
+
+Route::resource('monitores', MonitorController::class)->names('admin.monitores');
+
+Route::resource('cpus', CpuController::class)->names('admin.cpus');
+
+Route::resource('impresoras', ImpresoraController::class)->names('admin.impresoras');
+
+Route::resource('scanners', ScannerController::class)->names('admin.scanners');
+
+Route::resource('equipamientos', EquipamientoController::class)->names('admin.equipamientos');
 
 //Create particulares de Switchs NO LOS USO.. 
 /* Route::get('admin/conmutadores/create2', [ConmutadorController::class, 'create2'])->name('admin.conmutadores.createSwitchSector');
