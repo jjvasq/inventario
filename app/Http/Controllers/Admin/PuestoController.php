@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Conexion;
+use App\Models\Equipamiento;
+use App\Models\Puesto;
+use App\Models\Sector;
 use Illuminate\Http\Request;
 
 class PuestoController extends Controller
@@ -14,7 +18,7 @@ class PuestoController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.puestos.index');
     }
 
     /**
@@ -24,7 +28,13 @@ class PuestoController extends Controller
      */
     public function create()
     {
-        //
+        $estados = [
+            '1' => 'Activo',
+            '0' => 'No-Activo'
+        ];
+        
+        $sectores = Sector::pluck('nombre', 'id');
+        return view('admin.puestos.create', compact('estados', 'sectores'));
     }
 
     /**
@@ -35,7 +45,29 @@ class PuestoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'slug' => 'required|unique:puestos',
+            'estado' => 'required',
+        ]);
+
+        $equipamiento = Equipamiento::create([
+            'descripcion' => $request->descripcion_equipamiento,
+            'fecha_actualizacion' => $request->fecha_limpieza,
+        ]);
+
+        $puesto = Puesto::create([
+            'nombre' => $request->nombre,
+            'slug' => $request->slug,
+            'descripcion' => $request->descripcion,
+            'estado' => $request->estado,
+            'referencia_lugar' => $request->referencia_lugar,
+            'fecha_limpieza' => $request->fecha_limpieza,
+            'sector_id' => $request->sector_id,
+            'equipamiento_id' => $equipamiento->id,
+        ]);
+
+        return redirect()->route('admin.puestos.edit', $puesto)->with('info', 'El Puesto se creó correctamente');
     }
 
     /**
@@ -44,9 +76,9 @@ class PuestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Puesto $puesto)
     {
-        //
+        return view('admin.puestos.show', compact('puesto'));
     }
 
     /**
@@ -55,7 +87,7 @@ class PuestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Puesto $puesto)
     {
         //
     }
@@ -67,7 +99,7 @@ class PuestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Puesto $puesto)
     {
         //
     }
@@ -78,8 +110,9 @@ class PuestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Puesto $puesto)
     {
-        //
+        $puesto->delete();
+        return redirect()->route('admin.puestos.index')->with('eliminar', 'ok');
     }
 }

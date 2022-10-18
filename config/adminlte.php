@@ -375,7 +375,7 @@ return [
             'text'    => 'Puestos',
             'icon'    => 'fas fa-fw fa-keyboard',
             'icon_color' => 'purple',
-            'route'  => 'admin.home',/*  'admin.impresoras.index', */
+            'route'  => 'admin.puestos.index',
         ],
         ['header' => "####  IP's  ####"],
         [
