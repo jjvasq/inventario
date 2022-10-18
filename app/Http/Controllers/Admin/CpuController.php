@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cpu;
+use App\Models\Equipamiento;
 use Illuminate\Http\Request;
 
 class CpuController extends Controller
@@ -14,7 +16,7 @@ class CpuController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.cpus.index');
     }
 
     /**
@@ -24,7 +26,13 @@ class CpuController extends Controller
      */
     public function create()
     {
-        //
+        $estados = [
+            '1' => 'Activo',
+            '0' => 'Baja'
+        ];
+
+        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        return view('admin.cpus.create', compact('estados', 'equipamientos'));
     }
 
     /**
@@ -35,7 +43,15 @@ class CpuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'macaddress' => 'required',
+            'procesador' => 'required',
+            'ram_modelo' => 'required',
+            'ram_cantidad_gb' => 'required',
+        ]);
+
+        $cpu = Cpu::create($request->all());
+        return redirect()->route('admin.cpus.edit', $cpu)->with('info', 'El CPU se creó correctamente');
     }
 
     /**
@@ -44,9 +60,9 @@ class CpuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cpu $cpu)
     {
-        //
+        return view('admin.cpu.show', compact('cpu'));
     }
 
     /**
@@ -55,9 +71,15 @@ class CpuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Cpu $cpu)
     {
-        //
+        $estados = [
+            '1' => 'Activo',
+            '0' => 'Baja'
+        ];
+
+        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        return view('admin.cpus.edit', compact('cpu', 'estados', 'equipamientos'));
     }
 
     /**
@@ -67,9 +89,18 @@ class CpuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Cpu $cpu)
     {
-        //
+        $request->validate([
+            'macaddress' => 'required',
+            'procesador' => 'required',
+            'ram_modelo' => 'required',
+            'ram_cantidad_gb' => 'required',
+        ]);
+
+        $cpu->update($request->all());
+
+        return redirect()->route('admin.cpus.edit', $cpu)->with('info', 'El CPU se actualizó correctamente');
     }
 
     /**
@@ -78,8 +109,9 @@ class CpuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cpu $cpu)
     {
-        //
+        $cpu->delete();
+        return redirect()->route('admin.cpus.index')->with('eliminar', 'ok');
     }
 }

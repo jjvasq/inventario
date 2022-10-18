@@ -312,9 +312,10 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Dashboard',
-            'route'         => 'admin.home',
-            'icon'        => 'fas fa-globe fa-fw',
+            'text'       => 'Dashboard',
+            'route'      => 'admin.home',
+            'icon'       => 'fas fa-globe fa-fw',
+            'icon_color' => 'blue',
         ],
         ['header' => 'SETTINGS'],
         [
@@ -322,45 +323,59 @@ return [
             'route'  => 'admin.sectores.index',/* 'admin.sectores.index', */
             'active' => ['admin/sectores*'],
             'icon' => 'fas fa-fw fa-city',
+            'icon_color' => 'indigo',
         ],
         [
             'text' => 'Switchs',
             'route'  => 'admin.conmutadores.index',/* 'admin.conmutadores.index', */
+            'active' => ['admin/conmutadores*'],
             'icon' => 'fas fa-fw fa-handshake',
+            'icon_color' => 'orange',
         ],
         [
             'text' => 'Racks',
             'route'  => 'admin.racks.index',/*  'admin.racks.index', */
             'active' => ['admin/racks*'],
             'icon' => 'fab fa-fw fa-buffer',
+            'icon_color' => 'cyan',
         ],
         [
-            'text'    => 'Puesto',
-            'icon'    => 'fas fa-fw fa-keyboard',
+            'text'    => 'Equipamientos',
+            'icon' => 'fas fa-fw fa-truck-monster',
+            'icon_color' => 'green',
+            'url'     => 'admin.home',
             'submenu' => [
+                [
+                    'text' => "CPU's",
+                    'icon' => 'fas fa-fw fa-dice-d6',
+                    'icon_color' => 'teal',
+                    'route'  => 'admin.cpus.index',/*  'admin.cpus.index', */
+                ],
+                [
+                    'text'    => 'Monitores',
+                    'icon' => 'fas fa-fw fa-desktop',
+                    'icon_color' => 'teal',
+                    'route'     => 'admin.monitores.index',/*  'admin.monitores.index', */
+                ],
                 [
                     'text' => 'Impresoras',
                     'icon' => 'fas fa-fw fa-print',
+                    'icon_color' => 'teal',
                     'route'  => 'admin.home',/*  'admin.impresoras.index', */
                 ],
                 [
-                    'text'    => 'Equipamientos',
-                    'icon' => 'fas fa-fw fa-truck-monster',
-                    'url'     => 'admin.home',
-                    'submenu' => [
-                        [
-                            'text' => "CPU's",
-                            'icon' => 'fas fa-fw fa-dice-d6',
-                            'route'  => 'admin.home',/*  'admin.cpus.index', */
-                        ],
-                        [
-                            'text'    => 'Monitores',
-                            'icon' => 'fas fa-fw fa-desktop',
-                            'route'     => 'admin.monitores.index',/*  'admin.monitores.index', */
-                        ],
-                    ],
+                    'text' => 'Scanners',
+                    'icon' => 'fas fa-fw fa-print',
+                    'icon_color' => 'teal',
+                    'route'  => 'admin.home',/*  'admin.impresoras.index', */
                 ],
             ],
+        ],
+        [
+            'text'    => 'Puestos',
+            'icon'    => 'fas fa-fw fa-keyboard',
+            'icon_color' => 'purple',
+            'route'  => 'admin.home',/*  'admin.impresoras.index', */
         ],
         ['header' => "####  IP's  ####"],
         [
