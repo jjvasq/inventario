@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ConexionSeeder::class);
         $this->call(PuestoSeeder::class);
         $this->call(ImpresoraSeeder::class);
+        $this->call(ScannerSeeder::class);
     }
 }

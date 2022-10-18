@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Equipamiento;
+use App\Models\Scanner;
 use Illuminate\Http\Request;
 
 class ScannerController extends Controller
@@ -14,7 +16,7 @@ class ScannerController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.scanners.index');
     }
 
     /**
@@ -24,7 +26,13 @@ class ScannerController extends Controller
      */
     public function create()
     {
-        //
+        $estados = [
+            '1' => 'Activo',
+            '0' => 'Baja'
+        ];
+
+        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        return view('admin.scanners.create', compact('estados', 'equipamientos'));
     }
 
     /**
@@ -35,7 +43,15 @@ class ScannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'slug' => 'required|unique:scanners',
+            'descripcion' => 'required',
+            'estado' => 'required',
+        ]);
+
+        $scanner = Scanner::create($request->all());
+        return redirect()->route('admin.scanners.edit', $scanner)->with('info', 'La Impresora se creó correctamente');
     }
 
     /**
@@ -44,9 +60,9 @@ class ScannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Scanner $scanner)
     {
-        //
+        return view('admin.scanners.show', compact('scanner'));
     }
 
     /**
@@ -55,9 +71,15 @@ class ScannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Scanner $scanner)
     {
-        //
+        $estados = [
+            '1' => 'Activo',
+            '0' => 'Baja'
+        ];
+
+        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        return view('admin.scanners.edit', compact('scanner', 'estados', 'equipamientos'));
     }
 
     /**
@@ -67,9 +89,17 @@ class ScannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Scanner $scanner)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'slug' => "required|unique:scanners,slug,$scanner->id",
+            'descripcion' => 'required',
+            'estado' => 'required',
+        ]);
+        $scanner->update($request->all());
+
+        return redirect()->route('admin.scanners.edit', $scanner)->with('info', 'El Scanner se actualizó correctamente');
     }
 
     /**
@@ -78,8 +108,9 @@ class ScannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Scanner $scanner)
     {
-        //
+        $scanner->delete();
+        return redirect()->route('admin.scanners.index')->with('eliminar', 'ok');
     }
 }

@@ -27,5 +27,12 @@ class ImpresoraSeeder extends Seeder
             'descripcion' => 'Descripción de impresora hp 4015',
             'equipamiento_id' => 12,
         ]);
+
+        Impresora::create([
+            'nombre' => 'Hp 1020',
+            'slug' => 'hp-1020',
+            'descripcion' => 'Descripción de impresora hp 4015',
+            'equipamiento_id' => 12,
+        ]);
     }
 }

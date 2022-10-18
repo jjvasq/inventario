@@ -16,7 +16,7 @@ class CreateScannersTable extends Migration
         Schema::create('scanners', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name', 50);
+            $table->string('nombre', 50);
             $table->string('slug', 50);
             $table->string('descripcion', 255);
             $table->string('modelo', 45)->nullable();
