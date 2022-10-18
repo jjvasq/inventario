@@ -361,7 +361,7 @@ return [
                     'text' => 'Impresoras',
                     'icon' => 'fas fa-fw fa-print',
                     'icon_color' => 'teal',
-                    'route'  => 'admin.home',/*  'admin.impresoras.index', */
+                    'route'  => 'admin.impresoras.index',/*  'admin.impresoras.index', */
                 ],
                 [
                     'text' => 'Scanners',
