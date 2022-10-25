@@ -28,6 +28,6 @@ class Puesto extends Model
 
     //Relación uno a uno con Equipamiento
     public function equipamiento(){
-        return $this->hasOne(Equipamiento::class);
+        return $this->belongsTo(Equipamiento::class);
     }
 }

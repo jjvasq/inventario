@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Equipamiento;
 use App\Models\Monitor;
+use App\Models\Puesto;
 use Illuminate\Http\Request;
 
 class MonitorController extends Controller
@@ -27,11 +28,14 @@ class MonitorController extends Controller
     public function create()
     {
         $estados = [
+            '3' => 'Hurtado',
+            '2' => 'En Reparación',
             '1' => 'Activo',
             '0' => 'Baja'
         ];
 
-        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        /* $equipamientos = Equipamiento::pluck('descripcion', 'id'); */
+        $equipamientos = Puesto::pluck('nombre', 'equipamiento_id');
 
         return view('admin.monitores.create', compact('estados', 'equipamientos'));
     }
@@ -75,11 +79,14 @@ class MonitorController extends Controller
     public function edit(Monitor $monitore)
     {
         $estados = [
+            '3' => 'Hurtado',
+            '2' => 'En Reparación',
             '1' => 'Activo',
             '0' => 'Baja'
         ];
 
-        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        /* $equipamientos = Equipamiento::pluck('descripcion', 'id'); */
+        $equipamientos = Puesto::pluck('nombre', 'equipamiento_id');
         return view('admin.monitores.edit', compact('monitore', 'estados', 'equipamientos'));
     }
 

@@ -3,7 +3,7 @@
 @section('title', 'Puestos - ADMIN')
 
 @section('content_header')
-    <a class="btn btn-info float-right" href="{{ route('admin.puestos.index') }}">Volver al Índice</a>
+    <a class="btn btn-info float-right" href="{{ route('admin.home') }}">Volver al Índice</a>
     <h1>Puesto: {{ $puesto->nombre }}</h1>
 @stop
 

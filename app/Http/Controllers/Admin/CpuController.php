@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cpu;
 use App\Models\Equipamiento;
+use App\Models\Puesto;
 use Illuminate\Http\Request;
 
 class CpuController extends Controller
@@ -27,11 +28,14 @@ class CpuController extends Controller
     public function create()
     {
         $estados = [
+            '3' => 'Hurtado',
+            '2' => 'En Reparación',
             '1' => 'Activo',
             '0' => 'Baja'
         ];
 
-        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        /* $equipamientos = Equipamiento::pluck('descripcion', 'id'); */
+        $equipamientos = Puesto::pluck('nombre', 'equipamiento_id');
         return view('admin.cpus.create', compact('estados', 'equipamientos'));
     }
 
@@ -74,11 +78,14 @@ class CpuController extends Controller
     public function edit(Cpu $cpu)
     {
         $estados = [
+            '3' => 'Hurtado',
+            '2' => 'En Reparación',
             '1' => 'Activo',
             '0' => 'Baja'
         ];
 
-        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        /* $equipamientos = Equipamiento::pluck('descripcion', 'id'); */
+        $equipamientos = Puesto::pluck('nombre', 'equipamiento_id');
         return view('admin.cpus.edit', compact('cpu', 'estados', 'equipamientos'));
     }
 

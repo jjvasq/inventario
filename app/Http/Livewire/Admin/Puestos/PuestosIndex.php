@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Puestos;
 
 use App\Models\Puesto;
 use Livewire\Component;
@@ -33,7 +33,7 @@ class PuestosIndex extends Component
             ->orderby($this->sort, $this->direction)
             ->paginate($this->cant);
 
-        return view('livewire.admin.puestos-index', compact('puestos'));
+        return view('livewire.admin.puestos.puestos-index', compact('puestos'));
     }
 
     //Ordena según parámetro.

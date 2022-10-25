@@ -8,7 +8,8 @@
 @stop
 
 @section('content')
-    @livewire('admin.puestos-index')
+{{-- <p>Acá está el problema</p> --}}
+    @livewire('admin.puestos.puestos-index')
 @stop
 
 @section('css')
@@ -38,6 +39,17 @@
                 title: 'Se Eliminó Correctamente.!',
                 showConfirmButton: false,
                 timer: 2000
+            })
+        </script>
+    @endif
+    @if (session('create') == 'ok')
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Se registró el Puesto Correctamente.!',
+                showConfirmButton: false,
+                timer: 3000
             })
         </script>
     @endif

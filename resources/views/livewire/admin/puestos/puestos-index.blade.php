@@ -94,7 +94,12 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <p class="mx-3">{{ $puesto->referencia_lugar }}</p>
+                                            @if ($puesto->referencia_lugar != null)
+                                                <p class="mx-3">{{ $puesto->referencia_lugar }}</p>    
+                                            @else
+                                                <p class="mx-3">Sin Referencia</p>
+                                            @endif
+                                            
                                         </li>
                                     </ul>
                                 </div>

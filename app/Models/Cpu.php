@@ -13,6 +13,6 @@ class Cpu extends Model
 
     //Relación uno a uno inversa con Equipamiento
     public  function equipamiento(){
-        return $this->hasOne(Equipamiento::class);
+        return $this->belongsTo(Equipamiento::class);
     }
 }

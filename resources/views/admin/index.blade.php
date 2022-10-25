@@ -3,11 +3,11 @@
 @section('title', 'Inventario - ADMIN')
 
 @section('content_header')
-    <h1>Inventario - Administrador</h1>
+    {{-- <h4>Inventario:</h4> --}}
 @stop
 
 @section('content')
-    <p>Tabla completa con los datos de los ip - puestos - switch - etc</p>
+    @livewire('admin.principal-index')
 @stop
 
 @section('css')

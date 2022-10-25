@@ -11,13 +11,24 @@
     <div class="card">
         <div class="card-body">
             {!! Form::open(['route' => 'admin.puestos.store']) !!}
+                @include('admin.puestos.partials.form')
+                @livewire('admin.puestos.puestos-create')
+                @livewire('admin.puestos.busqueda-ip')
+                
+            {!! Form::submit('Crear Puesto', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
+        </div>
+    </div>
+    {{-- <div class="card">
+        <div class="card-body">
+            {!! Form::open(['route' => 'admin.puestos.store']) !!}
 
             @include('admin.puestos.partials.form')
 
             {!! Form::submit('Crear Puesto', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>
-    </div>
+    </div> --}}
 @stop
 
 @section('css')

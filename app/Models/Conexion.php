@@ -25,6 +25,6 @@ class Conexion extends Model
 
     //Relación uno a uno con Ip
     public function ip(){
-        return $this->hasOne(Ip::class);
+        return $this->belongsTo(Ip::class);
     }
 }

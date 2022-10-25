@@ -312,10 +312,11 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'       => 'Dashboard',
+            'text'       => 'Inventario',
             'route'      => 'admin.home',
+            'active' => ['admin/home*', 'admin/inventario*'],
             'icon'       => 'fas fa-globe fa-fw',
-            'icon_color' => 'blue',
+            'icon_color' => 'white',
         ],
         ['header' => 'SETTINGS'],
         [

@@ -13,12 +13,12 @@ class Equipamiento extends Model
 
     //Relación uno a uno inversa con Puesto
     public function puesto(){
-        return $this->belongsTo(Puesto::class);
+        return $this->hasOne(Puesto::class);
     }
 
     //Relación uno a uno con CPU
     public function cpu(){
-        return $this->belongsTo(Cpu::class);
+        return $this->hasOne(Cpu::class);
     }
 
     //Relación uno a muchos con Monitor

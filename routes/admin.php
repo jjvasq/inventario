@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CpuController;
 use App\Http\Controllers\Admin\EquipamientoController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ImpresoraController;
+use App\Http\Controllers\Admin\InventarioController;
 use App\Http\Controllers\Admin\IpController;
 use App\Http\Controllers\Admin\MonitorController;
 use App\Http\Controllers\Admin\PuestoController;
@@ -36,6 +37,9 @@ Route::resource('scanners', ScannerController::class)->names('admin.scanners');
 Route::resource('equipamientos', EquipamientoController::class)->names('admin.equipamientos');
 
 Route::resource('puestos', PuestoController::class)->names('admin.puestos');
+
+Route::get('inventario/{id}', [InventarioController::class, 'show'])->name('admin.inventario.show');
+
 
 //Create particulares de Switchs NO LOS USO.. 
 /* Route::get('admin/conmutadores/create2', [ConmutadorController::class, 'create2'])->name('admin.conmutadores.createSwitchSector');

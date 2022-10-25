@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Equipamiento;
 use App\Models\Impresora;
+use App\Models\Puesto;
 use Illuminate\Http\Request;
 
 class ImpresoraController extends Controller
@@ -27,11 +28,14 @@ class ImpresoraController extends Controller
     public function create()
     {
         $estados = [
+            '3' => 'Hurtado',
+            '2' => 'En Reparación',
             '1' => 'Activo',
             '0' => 'Baja'
         ];
 
-        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        /* $equipamientos = Equipamiento::pluck('descripcion', 'id'); */
+        $equipamientos = Puesto::pluck('nombre', 'equipamiento_id');
         return view('admin.impresoras.create', compact('estados', 'equipamientos'));
     }
 
@@ -74,11 +78,14 @@ class ImpresoraController extends Controller
     public function edit(Impresora $impresora)
     {
         $estados = [
+            '3' => 'Hurtado',
+            '2' => 'En Reparación',
             '1' => 'Activo',
             '0' => 'Baja'
         ];
 
-        $equipamientos = Equipamiento::pluck('descripcion', 'id');
+        /* $equipamientos = Equipamiento::pluck('descripcion', 'id'); */
+        $equipamientos = Puesto::pluck('nombre', 'equipamiento_id');
         return view('admin.impresoras.edit', compact('impresora', 'estados', 'equipamientos'));
     }
 

@@ -13,6 +13,6 @@ class Ip extends Model
 
     //Relación uno a uno inversa con Conexión
     public function conexion(){
-        return $this->belongsTo(Conexion::class);
+        return $this->hasOne(Conexion::class);
     }
 }
