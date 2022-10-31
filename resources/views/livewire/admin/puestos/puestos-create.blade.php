@@ -1,4 +1,4 @@
-<div>
+<div x-show="open_conexion">
     <div class="form-group">
         <h5 class="">Switch - Selección/Búsqueda:</h5>
         <div class="card">

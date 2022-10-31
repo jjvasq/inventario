@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-body">
+        <div class="card-body" x-data="data()" x-init="start()">
             {!! Form::open(['route' => 'admin.puestos.store']) !!}
                 @include('admin.puestos.partials.form')
                 @livewire('admin.puestos.puestos-create')
@@ -36,6 +36,34 @@
 @stop
 
 @section('js')
+   
+    <script>
+        function data(){
+            return{
+                open_conexion: null,
+                open_ip: null,
+                start(){
+                    this.open_conexion = true;
+                    this.open_ip = true;
+                },
+                openConexion(){
+                    this.open_conexion = true;
+                },
+                closeConexion(){
+                    this.open_conexion = false;
+                },
+                openIp(){
+                    this.open_ip = true;
+                },
+                closeIp(){
+                    this.open_ip = false;
+                },
+            }
+        }
+    </script>
+
+    <script src="//unpkg.com/alpinejs"></script>
+
     <script src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
 
     <script>

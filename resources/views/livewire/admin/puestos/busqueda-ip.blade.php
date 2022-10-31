@@ -1,4 +1,4 @@
-<div>
+<div x-show="open_ip">
     <div class="form-group">
         <h5 class="">IP:</h5>
         <div class="card">
