@@ -54,6 +54,18 @@
         </script>
     @endif
 
+    @if (session('edit') == 'ok')
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'El Puesto se Actualizó Correctamente.!',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        </script>
+    @endif
+
     <script>
         $('.formulario-eliminar').submit(function(e) {
             e.preventDefault();

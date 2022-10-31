@@ -22,6 +22,10 @@ class MonitoresIndex extends Component
         $this->resetPage();
     }
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
     public function render()
     {
         $monitores = Monitor::where('id', 'LIKE', '%' . $this->search . '%')

@@ -103,13 +103,16 @@
                                 @endif
                             </td>
                             <td>
-                                @if ($puesto->planta_sector == 1)
-                                    {{-- <div class="btn btn-sm btn-primary btn-block">P. Alta</div> --}}
-                                    <span class="badge bg-success">P.Alta</span>
+                                @if ($puesto->nombre_sector != null)
+                                    @if ($puesto->planta_sector == 1)                                        
+                                        <span class="badge bg-success">P.Alta</span>
+                                    @else
+                                        <span class="badge bg-secondary">P.Baja</span>
+                                    @endif
                                 @else
-                                    <span class="badge bg-secondary">P.Baja</span>
-                                    {{-- <div class="btn btn-sm btn-danger btn-block">P. Baja</div> --}}
+                                    <span class="badge bg-danger">S/D</span>
                                 @endif
+                                
                             </td>
                             <td>
                                 @if ($puesto->conectada_rack == 1)
@@ -157,7 +160,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="btn-group btn-block">
+                                <div class="btn-group ml-4">
                                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" 
                                         data-toggle="dropdown">
                                         <i class="fas fa-info"></i>

@@ -15,11 +15,21 @@
         </div>
     @endif
     <div class="card-body">
-        {!! Form::model($puesto, ['route' => ['admin.puestos.update', $puesto], 'method' => 'put']) !!}
-            @include('admin.puestos.partials.form')
+        {{-- {{$puesto}}
+        <hr>
+        {{$puesto2}}
+        <hr>
+        {{$puesto3}} --}}
+        @foreach ($puesto3 as $puesto)
+            {!! Form::model($puesto, ['route' => ['admin.puestos.update', $puesto], 'method' => 'put']) !!}
+                @include('admin.puestos.partials.form-edit')
+                @livewire('admin.puestos.puestos-create')
+                {{-- @livewire('admin.puestos.busqueda-ip') --}}
 
-            {!! Form::submit('Actualizar Puesto', ['class' => 'btn btn-primary']) !!}
-        {!! Form::close() !!}
+                {!! Form::submit('Actualizar Puesto', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}    
+        @endforeach
+        
     </div>
 </div>
 @stop

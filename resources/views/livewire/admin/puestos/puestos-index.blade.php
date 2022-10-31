@@ -70,7 +70,7 @@
                         <th>IdS</th>
                         <th>IdC</th>
                         <th>IdE</th>
-                        <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
+                        <th colspan="4" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,12 +78,18 @@
                         <tr>
                             <td>{{ $puesto->id }}</td>
                             <td>{{ $puesto->nombre }}</td>
-                            <td>{{ $puesto->descripcion}}</td>
+                            <td>
+                                @if ($puesto->descripcion != null)
+                                    {{ $puesto->descripcion}}
+                                @else
+                                    <small class="text-secondary">S/D</small>
+                                @endif
+                            </td>
                             <td>
                                 @if ($puesto->estado == 1)
                                     <small class="text-primary">Activo</small>
                                 @else
-                                    <small class="text-danger">Baja</small>
+                                    <small class="text-danger">No Activo</small>
                                 @endif
                             </td>
                             <td>
@@ -125,19 +131,36 @@
                                     <small class="text-secondary">S/A</small>
                                 @endif
                             </td>
-                            <td width="8px">
+                            <td>
                                 <a class="btn btn-success btn-sm"
                                     href="{{ route('admin.puestos.show', $puesto) }}">
                                     <i class="fas fa-eye mt-1"></i>
                                 </a>
                             </td>
-                            <td width="8px">
+                            <td>
+                                <a class="btn btn-danger btn-sm"
+                                    href="{{ route('admin.puestos.desconectar', $puesto) }}">
+                                    <i class="fas fa-bolt mt-1"></i>
+                                </a>
+                                {{-- @if ($puesto->conexion->en_uso == 1)
+                                    <a class="btn btn-danger btn-sm"
+                                        href="{{ route('admin.puestos.deconectar', $puesto) }}">
+                                        <i class="fas fa-trash mt-1"></i>
+                                    </a>
+                                @else
+                                    <a class="btn btn-default btn-sm"
+                                        href="{{ route('admin.puestos.deconectar', $puesto) }}">
+                                        <i class="fas fa-trash mt-1"></i>
+                                    </a>
+                                @endif --}}
+                            </td>
+                            <td>
                                 <a class="btn btn-primary btn-sm"
                                     href="{{ route('admin.puestos.edit', $puesto) }}">
                                     <i class="fas fa-pen mt-1"></i>
                                 </a>
                             </td>
-                            <td width="8px">
+                            <td>
                                 <form class="formulario-eliminar"
                                     action="{{ route('admin.puestos.destroy', $puesto) }}" method="POST">
                                     @csrf

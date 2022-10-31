@@ -20,6 +20,10 @@ class IpsIndex extends Component
     public function updatingSearch(){
         $this->resetPage();
     }
+    
+    public function updatingCant(){
+        $this->resetPage();
+    }
 
     public function render()
     {

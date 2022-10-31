@@ -93,7 +93,7 @@
                                         <h6 class="text-danger"><u>Fecha Impactada:</u> {{ $conexion->fecha_impactada }}
                                         </h6>
                                     @else
-                                        <h6><u>Conectada a Rack:</u> <i class="fas fa-x" style="color:red"></i></h6>
+                                        <h6><u>Conectada a Rack:</u> NO <i class="fas fa-bolt" style="color:red"></i></h6>
                                     @endif
 
                                     @if ($conexion->en_uso == 1)

@@ -38,6 +38,8 @@ Route::resource('equipamientos', EquipamientoController::class)->names('admin.eq
 
 Route::resource('puestos', PuestoController::class)->names('admin.puestos');
 
+Route::get('puestos/desconectar/{puesto}', [PuestoController::class, 'desconectar'])->name('admin.puestos.desconectar');
+
 Route::get('inventario/{id}', [InventarioController::class, 'show'])->name('admin.inventario.show');
 
 

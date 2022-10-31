@@ -22,6 +22,10 @@ class SectoresIndex extends Component
         $this->resetPage();
     }
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+    
     public function render()
     {
         $sectores = Sector::where('nombre', 'LIKE', "%".$this->search."%")

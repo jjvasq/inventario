@@ -90,10 +90,10 @@
                                         <h6><u>Conectada a Rack:</u> <i class="fas fa-check" style="color:green"></i></h6>
                                         <h6><u>Boca de Patch:</u> {{ $conexion->boca_patch }}</h6>
                                         <h6><u>Boca de Switch:</u> {{ $conexion->boca_switch }}</h6>
-                                        <h6 class="text-danger"><u>Fecha Impactada:</u> {{ $conexion->fecha_impactada }}
-                                        </h6>
+                                        <h6 class="text-danger"><u>Fecha Impactada:</u> {{ $conexion->fecha_impactada }}</h6>
                                     @else
-                                        <h6><u>Conectada a Rack:</u> <i class="fas fa-x" style="color:red"></i></h6>
+                                        <h6><u>Conectada a Rack:</u> NO<i class="fas fa-bolt" style="color:red"></i></h6>
+                        
                                     @endif
 
                                     @if ($conexion->en_uso == 1)
@@ -104,6 +104,7 @@
                                     @endif
                                 </div>
                             </div>
+                            
                             @if ($conexion->conectada_rack == 1)
                                 <div class="card card-info">
                                     <div class="card-header">

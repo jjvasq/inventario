@@ -3,7 +3,7 @@
 @section('title', 'Inventario Racks')
 
 @section('content_header')
-    <a class="btn btn-info float-right" onclick="muestraSweet()">Swit Alert</a>
+    {{-- <a class="btn btn-info float-right" onclick="muestraSweet()">Swit Alert</a> --}}
     <a class="btn btn-secondary float-right" href="{{ route('admin.racks.create') }}">Crear Rack</a>
     <h1>Listado de Rack's:</h1>
 @stop

@@ -21,6 +21,10 @@ class RacksIndex extends Component
         $this->resetPage();
     }
 
+    public function updatingCant(){
+        $this->resetPage();
+    }
+
     public function render()
     {
         $racks = Rack::where('nombre', 'LIKE', "%".$this->search."%")
