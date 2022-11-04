@@ -15,7 +15,7 @@ class RacksIndex extends Component
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
-    public $cant = 3;
+    public $cant = 5;
 
     public function updatingSearch(){
         $this->resetPage();

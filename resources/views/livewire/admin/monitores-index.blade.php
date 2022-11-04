@@ -4,8 +4,8 @@
             <div class="col-6 col-sm-5 col-md-4 input-group input-group-sm items-center">
                 <span>Mostrar</span>
                 <select wire:model="cant" class="mx-2 form-control">
-                    <option value="3">3</option>
-                    <option value="6">6</option>
+                    {{-- <option value="3">3</option> --}}
+                    <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
@@ -54,7 +54,7 @@
                             @endif
                         </th>
                         <th wire:click="order('tamanio')">
-                            Tamanio
+                            Tamaño
                             @if ($sort == 'tamanio')
                                 @if ($direction == 'asc')
                                     <i class="fas fa-sort-alpha-up-alt mt-1 float-right"></i>
@@ -89,6 +89,7 @@
                                 <i class="fas fa-sort mt-1 float-right"></i>
                             @endif
                         </th>
+                        <th>N°Patrimonial</th>
                         <th>Estado</th>
                         <th>Equipamiento_id</th>
                         <th colspan="2" class="text-bold text-danger text-center">ACCIONES</th>
@@ -102,6 +103,13 @@
                             <td>{{ $monitor->tamanio }}</td>
                             <td>{{ $monitor->modelo}}</td>
                             <td>{{ $monitor->serial }}</td>
+                            <td>
+                                @if ($monitor->patrimonial != null)
+                                    {{$monitor->patrimonial}}
+                                @else
+                                    <small class="text-secondary">S/D</small>
+                                @endif
+                            </td>
                             <td>
                                 @if ($monitor->estado == 1)
                                     <small class="text-success">Activo</small>

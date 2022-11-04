@@ -4,8 +4,8 @@
             <div class="col-6 col-sm-5 col-md-4 input-group input-group-sm items-center">
                 <span>Mostrar</span>
                 <select wire:model="cant" class="mx-2 form-control">
-                    <option value="3">3</option>
-                    <option value="6">6</option>
+                    {{-- <option value="3">3</option> --}}
+                    <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="50">50</option>
                     <option value="100">100</option>

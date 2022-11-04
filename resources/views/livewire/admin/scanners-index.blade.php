@@ -4,8 +4,8 @@
             <div class="col-6 col-sm-5 col-md-4 input-group input-group-sm items-center">
                 <span>Mostrar</span>
                 <select wire:model="cant" class="mx-2 form-control">
-                    <option value="3">3</option>
-                    <option value="6">6</option>
+                    {{-- <option value="3">3</option> --}}
+                    <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
@@ -78,6 +78,7 @@
                             @endif
                         </th>
                         <th>Descripcion</th>
+                        <th>N°Patrimonial</th>
                         <th>Estado</th>
                         <th>Eq-ID</th>
                         <th colspan="2" class="text-bold text-danger text-center">ACCIONES</th>
@@ -114,6 +115,14 @@
                                         </li>
                                     </ul>
                                 </div>
+                            </td>
+                            <td>
+                                @if ($scanner->patrimonial != null)
+                                    {{$scanner->patrimonial}}
+                                @else
+                                    <small class="text-secondary">S/D</small>
+                                @endif
+
                             </td>
                             <td>
                                 @if ($scanner->estado == 1)
