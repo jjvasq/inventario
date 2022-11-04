@@ -65,6 +65,29 @@
             })
         </script>
     @endif
+    @if (session('desconectar') == 'ok')
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'El Ip se Liberó, el Puesto se actualizó.!',
+                showConfirmButton: false,
+                timer: 3500
+            })
+        </script>
+    @endif
+
+    @if (session('ip') == 'fail')
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Creo un puesto con un IP no libre, preste atención',
+                showConfirmButton: false,
+                timer: 3500
+            })
+        </script>
+    @endif
 
     <script>
         $('.formulario-eliminar').submit(function(e) {

@@ -20,7 +20,7 @@ class CreateConexionesTable extends Migration
             $table->integer('boca_switch');
             $table->tinyInteger('conectada_rack')->default(1);
             $table->tinyInteger('en_uso')->default(0);
-            $table->date('fecha_impactada');
+            $table->date('fecha_impactada')->nullable();
             
             $table->unsignedBigInteger('conmutador_id')->nullable();
             $table->unsignedBigInteger('ip_id')->nullable();

@@ -30,5 +30,15 @@ class EquipamientoSeeder extends Seeder
             'descripcion' => 'Equipamiento vinculado a Impresora Acceso a Personal',
             'fecha_actualizacion' => '2022-09-21',
         ]);
+
+        Equipamiento::create([
+            'descripcion' => 'Equipamiento de Comuncación 01',
+            'fecha_actualizacion' => '2022-09-21',
+        ]);
+
+        Equipamiento::create([
+            'descripcion' => 'Máquina de soporte con todos los sistemas necesarios para soporte y desarrollo',
+            'fecha_actualizacion' => '2022-09-21',
+        ]);
     }
 }

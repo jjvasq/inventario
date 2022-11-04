@@ -16,7 +16,7 @@ class CreateIpsTable extends Migration
         Schema::create('ips', function (Blueprint $table) {
             $table->id();
 
-            $table->string('direccion_ip', 50)->default('10.1.104.');
+            $table->string('direccion_ip', 50)->unique();
             $table->tinyInteger('estado')->default(1);
 
             $table->timestamps();

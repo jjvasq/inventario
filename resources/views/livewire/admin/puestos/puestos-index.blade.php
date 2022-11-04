@@ -70,7 +70,9 @@
                         <th>IdS</th>
                         <th>IdC</th>
                         <th>IdE</th>
-                        <th colspan="4" class="text-bold text-danger text-center">ACCIONES</th>
+                        <th>En Uso</th>
+                        <th>IP</th>
+                        <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -132,27 +134,27 @@
                                 @endif
                             </td>
                             <td>
+                                 @if ($puesto->en_uso == 1)
+                                    <span class="badge bg-success">Si</span>
+                                 @else
+                                    <span class="badge bg-danger">No</span>
+                                 @endif
+                            </td>
+                            <td>
+                                 @if ($puesto->en_uso == 1)
+                                     <a class="btn btn-danger btn-sm"
+                                         href="{{ route('admin.puestos.desconectar', $puesto->conexion_id) }}">
+                                         <i class="fas fa-bolt mt-1"></i> Desconectar
+                                     </a>
+                                 @else
+                                    <span class="badge bg-secondary">No conectado</span>
+                                 @endif
+                            </td>
+                            <td>
                                 <a class="btn btn-success btn-sm"
                                     href="{{ route('admin.puestos.show', $puesto) }}">
                                     <i class="fas fa-eye mt-1"></i>
                                 </a>
-                            </td>
-                            <td>
-                                <a class="btn btn-danger btn-sm"
-                                    href="{{ route('admin.puestos.desconectar', $puesto) }}">
-                                    <i class="fas fa-bolt mt-1"></i>
-                                </a>
-                                {{-- @if ($puesto->conexion->en_uso == 1)
-                                    <a class="btn btn-danger btn-sm"
-                                        href="{{ route('admin.puestos.deconectar', $puesto) }}">
-                                        <i class="fas fa-trash mt-1"></i>
-                                    </a>
-                                @else
-                                    <a class="btn btn-default btn-sm"
-                                        href="{{ route('admin.puestos.deconectar', $puesto) }}">
-                                        <i class="fas fa-trash mt-1"></i>
-                                    </a>
-                                @endif --}}
                             </td>
                             <td>
                                 <a class="btn btn-primary btn-sm"

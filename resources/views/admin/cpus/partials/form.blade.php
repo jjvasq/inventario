@@ -48,6 +48,11 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('patrimonial', 'Patrimonial:') !!}
+    {!! Form::text('patrimonial', null, ['class' => 'form-control', 'placeholder' => '-']) !!}
+</div>
+
+<div class="form-group">
     {!! Form::label('estado', 'Estado') !!}
     {!! Form::select('estado', $estados, null, ['class' => 'form-control']) !!}
 </div>

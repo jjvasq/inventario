@@ -20,6 +20,7 @@ class CreateMonitoresTable extends Migration
             $table->string('tamanio')->default('19 Pulgadas');
             $table->string('modelo', 50);
             $table->string('serial', 50);
+            $table->string('patrimonial', 50)->nullable();
             $table->tinyInteger('estado')->default(1);
             
             $table->unsignedBigInteger('equipamiento_id')->nullable();

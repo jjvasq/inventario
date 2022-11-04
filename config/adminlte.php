@@ -350,24 +350,28 @@ return [
                     'text' => "CPU's",
                     'icon' => 'fas fa-fw fa-dice-d6',
                     'icon_color' => 'teal',
+                    'active' => ['admin/cpus*'],
                     'route'  => 'admin.cpus.index',/*  'admin.cpus.index', */
                 ],
                 [
                     'text'    => 'Monitores',
                     'icon' => 'fas fa-fw fa-desktop',
                     'icon_color' => 'teal',
+                    'active' => ['admin/monitores*'],
                     'route'     => 'admin.monitores.index',/*  'admin.monitores.index', */
                 ],
                 [
                     'text' => 'Impresoras',
                     'icon' => 'fas fa-fw fa-print',
                     'icon_color' => 'teal',
+                    'active' => ['admin/impresoras*'],
                     'route'  => 'admin.impresoras.index',/*  'admin.impresoras.index', */
                 ],
                 [
                     'text' => 'Scanners',
                     'icon' => 'fas fa-fw fa-print',
                     'icon_color' => 'teal',
+                    'active' => ['admin/scanners*'],
                     'route'  => 'admin.scanners.index',/*  'admin.impresoras.index', */
                 ],
             ],
@@ -376,6 +380,7 @@ return [
             'text'    => 'Puestos',
             'icon'    => 'fas fa-fw fa-keyboard',
             'icon_color' => 'purple',
+            'active' => ['admin/puestos*'],
             'route'  => 'admin.puestos.index',
         ],
         ['header' => "####  IP's  ####"],

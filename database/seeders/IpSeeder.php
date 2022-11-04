@@ -14,9 +14,15 @@ class IpSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i<=50 ; $i++) { 
+        for ($i=1; $i<=10 ; $i++) { 
             Ip::create([
                 'direccion_ip' => '10.1.104.'.($i+100),
+            ]);
+        }
+        for ($i=1; $i<=10 ; $i++) { 
+            Ip::create([
+                'direccion_ip' => '10.1.104.'.($i+110),
+                'estado' => 0,
             ]);
         }
     }

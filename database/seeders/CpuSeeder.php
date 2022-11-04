@@ -15,7 +15,7 @@ class CpuSeeder extends Seeder
     public function run()
     {
         //10 Cpu's el resto de los campos tienen default.
-        for ($i=1; $i<=10 ; $i++) { 
+        for ($i=1; $i<=14 ; $i++) { 
             Cpu::create([
                 'macaddress' => 'ABCDEFGH'.$i,
                 'procesador' => 'Intel i5',

@@ -14,23 +14,27 @@
             <strong>{{session('info')}}</strong>
         </div>
     @endif
-    <div class="card-body">
-        {{-- {{$puesto}}
-        <hr>
-        {{$puesto2}}
-        <hr>
-        {{$puesto3}} --}}
-        @foreach ($puesto3 as $puesto)
+    
+    @foreach ($puestos as $puesto)
+        @if ($puesto->conectada_rack)
+            <div class="card-body" x-data="data()" x-init="start()">    
+        @else
+            <div class="card-body" x-data="data()" x-init="start2()">
+        @endif
+        
             {!! Form::model($puesto, ['route' => ['admin.puestos.update', $puesto], 'method' => 'put']) !!}
                 @include('admin.puestos.partials.form-edit')
                 @livewire('admin.puestos.puestos-create')
+                @if ($puesto->en_uso == 0)
+                    @include('admin.puestos.partials.form-enuso')
+                    @livewire('admin.puestos.busqueda-ip')    
+                @endif
                 {{-- @livewire('admin.puestos.busqueda-ip') --}}
 
                 {!! Form::submit('Actualizar Puesto', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}    
-        @endforeach
-        
-    </div>
+        </div>
+    @endforeach
 </div>
 @stop
 
@@ -39,6 +43,38 @@
 @stop
 
 @section('js')
+
+    <script>
+        function data(){
+            return{
+                open_conexion: null,
+                open_ip: null,
+                start(){
+                    this.open_conexion = true;
+                    this.open_ip = false;
+                },
+                start2(){
+                    this.open_conexion = false;
+                    this.open_ip = false;
+                },
+                openConexion(){
+                    this.open_conexion = true;
+                },
+                closeConexion(){
+                    this.open_conexion = false;
+                },
+                openIp(){
+                    this.open_ip = true;
+                },
+                closeIp(){
+                    this.open_ip = false;
+                },
+            }
+        }
+    </script>
+
+    <script src="//unpkg.com/alpinejs"></script>
+
     <script src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
 
     <script>

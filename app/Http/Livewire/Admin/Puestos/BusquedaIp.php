@@ -11,8 +11,8 @@ class BusquedaIp extends Component
 
     public function render()
     {
-        $ips = Ip::join('conexiones', 'ips.id', '=', 'conexiones.ip_id')
-                    ->join('puestos', 'conexiones.id', '=', 'puestos.conexion_id')
+        $ips = Ip::leftjoin('conexiones', 'ips.id', '=', 'conexiones.ip_id')
+                    ->leftjoin('puestos', 'conexiones.id', '=', 'puestos.conexion_id')
                     ->select('ips.*','puestos.nombre as nombre_puesto')
                     ->where('direccion_ip','LIKE', "%" .$this->search . "%")
                     ->get();

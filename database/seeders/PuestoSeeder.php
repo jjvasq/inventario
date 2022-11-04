@@ -86,5 +86,26 @@ class PuestoSeeder extends Seeder
             'conexion_id' => 12,
             'equipamiento_id' => 12,
         ]);
+
+        //Comunicacion
+        Puesto::create([
+            'nombre' => 'Comuncacion 01',
+            'slug' => 'comunicacion_01',
+            'descripcion' => 'Puesto utilizado para manejar agenda',
+            'referencia_lugar' => 'Nuevo lugar, ex deposito Auditorio',
+            'fecha_limpieza' => '2022-09-21',
+            'conexion_id' => 13,
+            'equipamiento_id' => 13,
+        ]);
+
+        Puesto::create([
+            'nombre' => 'STI Soporte Puesto 02',
+            'slug' => 'sti-soporte-puesto-02',
+            'descripcion' => 'Puesto de soporte en planta baja',
+            'referencia_lugar' => 'Oficina de Comunicación junto a la ventana',
+            'fecha_limpieza' => '2022-09-21',
+            'conexion_id' => 14,
+            'equipamiento_id' => 14,
+        ]);
     }
 }

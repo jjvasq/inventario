@@ -32,12 +32,18 @@
                                 <tr>
                                     <td>{{ $ip->id }}</td>
                                     <td>{{ $ip->direccion_ip }}</td>
-                                    <td>{{ $ip->nombre_puesto }}</td>
+                                    <td>
+                                        @if ($ip->nombre_puesto != null)
+                                            {{ $ip->nombre_puesto }}
+                                        @else
+                                            S/A
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($ip->estado == 1)
-                                            <span>Activo <i class="fas fa-check" style="color:green"></i></span>
+                                            <span>Activo <i class="fas fa-bolt" style="color:darkorange"></i></span>
                                         @else
-                                            <span>Libre</i></span>
+                                            <span>Libre <i class="fas fa-check" style="color:green"></i></span>
                                         @endif
                                     </td>
                                 </tr>

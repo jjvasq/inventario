@@ -13,6 +13,7 @@
             {!! Form::open(['route' => 'admin.puestos.store']) !!}
                 @include('admin.puestos.partials.form')
                 @livewire('admin.puestos.puestos-create')
+                @include('admin.puestos.partials.form-enuso')
                 @livewire('admin.puestos.busqueda-ip')
                 
             {!! Form::submit('Crear Puesto', ['class' => 'btn btn-primary']) !!}

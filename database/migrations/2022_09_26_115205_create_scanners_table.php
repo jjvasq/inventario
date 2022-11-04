@@ -22,6 +22,7 @@ class CreateScannersTable extends Migration
             $table->string('modelo', 45)->nullable();
             $table->string('serial', 255)->nullable();
             $table->tinyInteger('estado')->default(1);
+            $table->string('patrimonial', 50)->nullable();
 
             $table->unsignedBigInteger('equipamiento_id')->nullable();
             $table->foreign('equipamiento_id')->references('id')->on('equipamientos')->onDelete('set null')->onUpdate('cascade');

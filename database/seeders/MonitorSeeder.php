@@ -14,7 +14,7 @@ class MonitorSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i<=10 ; $i++) { 
+        for ($i=1; $i<=14 ; $i++) { 
             Monitor::create([
                 'marca' => 'LG',
                 'modelo' => 'LED-19A38',
@@ -22,5 +22,12 @@ class MonitorSeeder extends Seeder
                 'equipamiento_id' => $i,
             ]);
         }
+        Monitor::create([
+            'marca' => 'LG',
+            'modelo' => 'LED-24A38',
+            'tamanio' => '24 Pulgadas',
+            'serial' => 'A1B2C3D424',
+            'equipamiento_id' => 14,
+        ]);
     }
 }
