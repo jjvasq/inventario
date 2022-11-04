@@ -18,17 +18,6 @@
 @section('js')
     <script src="sweetalert2.all.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- <script>
-        function muestraSweet() {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'El botón está funcionando.!',
-                showConfirmButton: false,
-                timer: 3500
-            })
-        }
-    </script> --}}
 
     @if (session('eliminar') == 'ok')
         <script>
@@ -36,6 +25,17 @@
                 position: 'top-end',
                 icon: 'success',
                 title: 'Se Eliminó Correctamente.!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
+    @if (session('liberar') == 'ok')
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Se Liberó el Ip Correctamente.!',
                 showConfirmButton: false,
                 timer: 2000
             })

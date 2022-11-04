@@ -5,8 +5,8 @@
             <div class="col-6 col-sm-5 col-md-4 input-group input-group-sm items-center">
                 <span>Mostrar</span>
                 <select wire:model="cant" class="mx-2 form-control">
-                    <option value="3">3</option>
-                    <option value="6">6</option>
+                    {{-- <option value="3">3</option> --}}
+                    <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
@@ -55,7 +55,8 @@
                             
                         </th>
                         <th>Estado</th>
-                        <th colspan="2" class="text-bold text-danger text-center">ACCIONES</th>
+                        <th>Puesto</th>
+                        <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,8 +68,28 @@
                                 @if ($ip->estado == 1)
                                     <small class="text-success">Activo</small>
                                 @else
-                                    <small class="text-info">LIBRE</small>
+                                    @if ($ip->estado == 0)
+                                        <small class="text-info">LIBRE</small>
+                                    @else
+                                        <small class="text-info">RESERVADO</small>
+                                    @endif
                                 @endif
+                            </td>
+                            <td>
+                                @if ($ip->nombre_puesto != null)
+                                    {{ $ip->nombre_puesto }}
+                                @else
+                                    <small class="text-secondary">S/A</small>
+                                @endif
+                            </td>
+                          
+                            <td width="100px">
+                                @if ($ip->estado == 1)
+                                    <a class="btn btn-dark btn-sm" href="{{route('admin.ips.liberar', $ip)}}"><i class="fas fa-bolt mt-1"></i> Liberar</a>
+                                @else
+                                    <a class="btn btn-default btn-sm" href="#"><i class="fas fa-bolt mt-1"></i> Libre</a>
+                                @endif
+                               
                             </td>
                             <td width="10px">
                                 <a class="btn btn-primary btn-sm" href="{{route('admin.ips.edit', $ip)}}">Editar</a>

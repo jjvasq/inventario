@@ -15,7 +15,7 @@ class IpsIndex extends Component
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
-    public $cant = 3;
+    public $cant = 5;
 
     public function updatingSearch(){
         $this->resetPage();
@@ -28,7 +28,10 @@ class IpsIndex extends Component
     public function render()
     {
         /* $ips = Ip::all(); */
-        $ips = Ip::where('direccion_ip', 'LIKE', "%".$this->search."%")
+        $ips = Ip::leftjoin('conexiones','ips.id','=','conexiones.ip_id')
+                    ->leftjoin('puestos','conexiones.id','=','puestos.conexion_id')
+                    ->select('ips.*','puestos.nombre as nombre_puesto')
+                    ->where('direccion_ip', 'LIKE', "%".$this->search."%")
                     ->orderby($this->sort, $this->direction)
                     ->paginate($this->cant);
         return view('livewire.admin.ips-index', compact('ips'));

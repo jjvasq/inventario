@@ -93,6 +93,11 @@ class IpController extends Controller
         return redirect()->route('admin.ips.edit', $ip)->with('info', 'El Ip se Actualizó correctamente');
     }
 
+    public function liberar($ip)
+    {
+        return redirect()->route('admin.ips.index')->with('liberar', 'ok');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
