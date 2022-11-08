@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Conexion;
 use App\Models\Ip;
 use Illuminate\Http\Request;
 use Livewire\WithPagination;
@@ -43,7 +44,7 @@ class IpController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'direccion_ip' => 'required',
+            'direccion_ip' => 'required|unique:ips',
             'estado' => 'required',
         ]);
 
@@ -93,8 +94,21 @@ class IpController extends Controller
         return redirect()->route('admin.ips.edit', $ip)->with('info', 'El Ip se Actualizó correctamente');
     }
 
-    public function liberar($ip)
+    public function liberar($conexion)
     {
+        $con = Conexion::findOrFail($conexion);
+
+        $ipAux = Ip::findOrFail($con->ip_id);
+
+        $con->update([
+            'en_uso' => 0,
+            'ip_id' => null,
+        ]);
+
+        $ipAux->update([
+            'estado' => 0,
+        ]);
+
         return redirect()->route('admin.ips.index')->with('liberar', 'ok');
     }
 

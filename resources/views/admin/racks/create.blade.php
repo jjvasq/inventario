@@ -3,6 +3,7 @@
 @section('title', 'Inventario Racks')
 
 @section('content_header')
+    <a class="btn btn-secondary float-right" href="{{ route('admin.racks.index') }}">Volver al Índice</a>
     <h1>Crear Rack</h1>
 @stop
 
@@ -10,8 +11,7 @@
     <div class="card">
         <div class="card-body">
             {!! Form::open(['route' => 'admin.racks.store']) !!}
-
-                
+             
                 @include('admin.racks.partials.form')
 
                 {!! Form::submit('Crear Rack', ['class' => 'btn btn-primary']) !!}

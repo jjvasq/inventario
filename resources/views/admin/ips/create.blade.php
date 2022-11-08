@@ -3,6 +3,7 @@
 @section('title', "Inventario Ip's")
 
 @section('content_header')
+    <a class="btn btn-info float-right" href="{{ route('admin.ips.index') }}">Volver al Índice</a>
     <h1>Crear Ip</h1>
 @stop
 

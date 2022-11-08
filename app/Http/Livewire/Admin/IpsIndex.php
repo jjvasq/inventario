@@ -30,7 +30,7 @@ class IpsIndex extends Component
         /* $ips = Ip::all(); */
         $ips = Ip::leftjoin('conexiones','ips.id','=','conexiones.ip_id')
                     ->leftjoin('puestos','conexiones.id','=','puestos.conexion_id')
-                    ->select('ips.*','puestos.nombre as nombre_puesto')
+                    ->select('ips.*','conexiones.id as conexion_id','puestos.nombre as nombre_puesto')
                     ->where('direccion_ip', 'LIKE', "%".$this->search."%")
                     ->orderby($this->sort, $this->direction)
                     ->paginate($this->cant);

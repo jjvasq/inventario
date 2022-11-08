@@ -66,5 +66,29 @@
             })
         });
     </script>
+    <script>
+        $('.liberar-ip').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Estás seguro de Liberar?',
+                text: "Se modificarán los Datos de conexión...",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Si, Liberar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                    /* Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ) */
+                }
+            })
+        });
+    </script>
     <script> console.log('Hi!'); </script>
 @stop

@@ -67,7 +67,7 @@
                         <th>Referencia</th>
                         <th>Planta</th>
                         <th>Fecha Limpieza</th>
-                        <th colspan="2" class="text-bold text-danger text-center">ACCIONES</th>
+                        <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,6 +97,11 @@
                                 @endif
                             </td>
                             <td>{{$rack->fecha_limpieza}}</td>
+                            <td width="10px">
+                                <a class="btn btn-success btn-sm" href="{{route('admin.racks.show', $rack)}}">
+                                    {{-- <i class="fas fa-eye"></i> --}}Detalle
+                                </a>
+                            </td>
                             <td width="10px">
                                 <a class="btn btn-primary btn-sm" href="{{route('admin.racks.edit', $rack)}}">Editar</a>
                             </td>

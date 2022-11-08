@@ -38,8 +38,7 @@
                                 @endif
                             @else
                                 <i class="fas fa-sort mt-1 float-right"></i>    
-                            @endif
-                            
+                            @endif                            
                         </th>
                         <th style="width: 60px" wire:click="order('direccion_ip')">
                             IP
@@ -52,7 +51,6 @@
                             @else
                                 <i class="fas fa-sort mt-1 float-right"></i>    
                             @endif
-                            
                         </th>
                         <th>Estado</th>
                         <th>Puesto</th>
@@ -85,7 +83,7 @@
                           
                             <td width="100px">
                                 @if ($ip->estado == 1)
-                                    <a class="btn btn-dark btn-sm" href="{{route('admin.ips.liberar', $ip)}}"><i class="fas fa-bolt mt-1"></i> Liberar</a>
+                                    <a class="liberar-ip btn btn-dark btn-sm" href="{{route('admin.ips.liberar', $ip->conexion_id)}}"><i class="fas fa-bolt mt-1"></i> Liberar</a>
                                 @else
                                     <a class="btn btn-default btn-sm" href="#"><i class="fas fa-bolt mt-1"></i> Libre</a>
                                 @endif

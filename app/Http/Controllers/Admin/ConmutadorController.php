@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Conexion;
 use App\Models\Conmutador;
 use App\Models\Rack;
 use App\Models\Sector;
@@ -60,7 +61,16 @@ class ConmutadorController extends Controller
      */
     public function show (Conmutador $conmutadore)
     {
-        return view('admin.conmutadores.show', compact('conmutadore'));
+        $conmutador = $conmutadore;
+
+        $conexiones = Conexion::where('conmutador_id','=',$conmutador->id)
+                                ->leftjoin('ips','conexiones.ip_id','=','ips.id')
+                                ->join('puestos','conexiones.id','=','puestos.conexion_id')
+                                ->select('conexiones.*','ips.direccion_ip as direccion_ip',
+                                'puestos.nombre as nombre_puesto')
+                                ->get();
+
+        return view('admin.conmutadores.show', compact('conmutador', 'conexiones'));
     }
 
     /**

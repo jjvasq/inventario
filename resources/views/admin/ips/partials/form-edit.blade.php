@@ -6,15 +6,3 @@
         <span class="text-danger">{{$message}}</span>
     @enderror
 </div>
-
-<div class="form-group">
-    <p class="font-weight-bold float-left mr-2">Estado:</p>
-    <label class="mr-3">
-        {!! Form::radio('estado', 0, true) !!}
-        Libre
-    </label>
-    <label class="mr-3">
-        {!! Form::radio('estado', 2) !!}
-        Reservado
-    </label>
-</div>

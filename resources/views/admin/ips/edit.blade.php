@@ -3,6 +3,7 @@
 @section('title', "Inventario Ip's")
 
 @section('content_header')
+    <a class="btn btn-info float-right" href="{{ route('admin.ips.index') }}">Volver al Índice</a>
     <h1>Editar Ip:</h1>
 @stop
 
@@ -16,8 +17,12 @@
         <div class="card-body">
             {!! Form::model($ip, ['route' => ['admin.ips.update', $ip], 'method' => 'put']) !!}
 
-                @include('admin.ips.partials.form')
-
+                @if ($ip->estado == 1)
+                    @include('admin.ips.partials.form-edit')
+                @else
+                    @include('admin.ips.partials.form')
+                @endif
+                
                 {!! Form::submit('Actualizar Ip', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>

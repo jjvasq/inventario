@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Conmutador;
 use App\Models\Rack;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,7 @@ class RackController extends Controller
      */
     public function index()
     {
-        $racks = Rack::all();
-        return view('admin.racks.index', compact('racks'));
+        return view('admin.racks.index');
     }
 
     /**
@@ -55,7 +55,10 @@ class RackController extends Controller
      */
     public function show(Rack $rack)
     {
-        return view('admin.racks.show', compact('rack'));
+        $conmutadores = Conmutador::where('rack_id','=',$rack->id)
+                                    ->get();
+
+        return view('admin.racks.show', compact('rack', 'conmutadores'));
     }
 
     /**

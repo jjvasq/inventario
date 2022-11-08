@@ -40,7 +40,7 @@ Route::resource('puestos', PuestoController::class)->names('admin.puestos');
 
 Route::get('puestos/desconectar/{conexion}', [PuestoController::class, 'desconectar'])->name('admin.puestos.desconectar');
 
-Route::get('ips/liberar/{ip}', [IpController::class, 'liberar'])->name('admin.ips.liberar');
+Route::get('ips/liberar/{conexion}', [IpController::class, 'liberar'])->name('admin.ips.liberar');
 
 Route::get('inventario/{id}', [InventarioController::class, 'show'])->name('admin.inventario.show');
 
