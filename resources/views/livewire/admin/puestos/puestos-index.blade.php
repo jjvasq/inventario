@@ -142,10 +142,14 @@
                             </td>
                             <td>
                                  @if ($puesto->en_uso == 1)
-                                     <a class="btn btn-danger btn-sm"
+                                    <form class="liberar-ip" action="{{ route('admin.puestos.desconectar', $puesto->conexion_id) }}" method="get">
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-bolt mt-1"></i> Desconectar</button>
+                                    </form>
+
+                                     {{-- <a class="btn btn-danger btn-sm"
                                          href="{{ route('admin.puestos.desconectar', $puesto->conexion_id) }}">
                                          <i class="fas fa-bolt mt-1"></i> Desconectar
-                                     </a>
+                                     </a> --}}
                                  @else
                                     <span class="badge bg-secondary">No conectado</span>
                                  @endif

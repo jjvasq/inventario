@@ -59,6 +59,10 @@
         <span class="text-danger">{{ $message }}</span>
     @enderror --}}
 </div>
+<div class="form-group">
+    {!! Form::label('fecha_actualizacion', 'Fecha de Actualización Equipamiento:', ['class' => 'mr-3']) !!}
+    {!! Form::date('fecha_actualizacion', \Carbon\Carbon::now()) !!}
+</div>
 
 <h5>Datos de Conexión:</h5>
 <div class="row">

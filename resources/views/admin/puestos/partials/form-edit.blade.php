@@ -41,7 +41,7 @@
 
 <div class="form-group">
     {!! Form::label('fecha_limpieza', 'Fecha de Limpieza:', ['class' => 'mr-3']) !!}
-    {!! Form::date('fecha_limpieza', \Carbon\Carbon::now()) !!}
+    {!! Form::date('fecha_limpieza', null) !!}
 </div>
 
 <div class="form-group">
@@ -55,6 +55,10 @@
         'class' => 'form-control',
         'placeholder' => '...Una descripción',
     ]) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('fecha_actualizacion', 'Fecha de Actualización Equipamiento:', ['class' => 'mr-3']) !!}
+    {!! Form::date('fecha_actualizacion', null) !!}
 </div>
 
 <h5>Datos de Conexión:</h5>
@@ -80,7 +84,7 @@
     </div>
     <div class="col-12 col-md-3 form-group" x-show="open_conexion">
         {!! Form::label('fecha_impactada', 'Fecha Impactada:', ['class' => 'mr-3']) !!}
-        {!! Form::date('fecha_impactada', \Carbon\Carbon::now()) !!}
+        {!! Form::date('fecha_impactada', null) !!}
     </div>
 </div>
 

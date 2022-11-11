@@ -114,6 +114,30 @@
         });
     </script>
     <script>
+        $('.liberar-ip').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Estás seguro de Desconectar?',
+                text: "Quedará el Puesto Sin IP y el IP pasará a LIBRE",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Si, Desconectar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                    /* Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    ) */
+                }
+            })
+        });
+    </script>
+    <script>
         console.log('Hi!');
     </script>
 @stop

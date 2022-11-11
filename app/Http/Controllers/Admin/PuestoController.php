@@ -86,7 +86,7 @@ class PuestoController extends Controller
 
         $equipamiento = Equipamiento::create([
             'descripcion' => $request->descripcion_equipamiento,
-            'fecha_actualizacion' => $request->fecha_limpieza,
+            'fecha_actualizacion' => $request->fecha_actualizacion,
         ]);
 
         if($request->en_uso){
@@ -95,13 +95,13 @@ class PuestoController extends Controller
                     ->get();
             if($ips->count()){
                 foreach($ips as $ip){
-                    if($ip->estado == 1){
-                        return redirect()->route('admin.puestos.index')->with('ip', 'fail');    
-                    }
-                    else{
+                    if($ip->estado == 0){
                         $ip->update([
                             'estado' => 1,
                         ]);
+                    }
+                    else{
+                        return redirect()->route('admin.puestos.index')->with('ip', 'fail');    
                     }
                 }
             }
@@ -111,8 +111,6 @@ class PuestoController extends Controller
                     'estado' => 1,
                 ]);
             }
-
-            
         }
         
         if($request->en_uso){
@@ -214,8 +212,10 @@ class PuestoController extends Controller
                 ->select('puestos.*','conexiones.boca_patch as boca_patch',
                 'conexiones.boca_switch as boca_switch','conexiones.conectada_rack as conectada_rack',
                 'conexiones.conmutador_id as conmutador_id', 'conexiones.en_uso as en_uso',
+                'conexiones.fecha_impactada as fecha_impactada',
                 'sectores.nombre as nombre_sector','sectores.planta as planta_sector',
                 'equipamientos.descripcion as descripcion_equipamiento',
+                'equipamientos.fecha_actualizacion as fecha_actualizacion',
                 'ips.direccion_ip as direccion_ip','ips.estado as estado_ip',
                 'conmutadores.numero as numero_conmutador','conmutadores.marca as marca_conmutador')
                 ->where('puestos.id','=',$puesto->id)
@@ -244,42 +244,156 @@ class PuestoController extends Controller
      */
     public function update(Request $request, Puesto $puesto)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'slug' => "required|unique:puestos,slug,$puesto->id",
-            'estado' => 'required',
-            'conmutador_id' => 'required',
-        ]);
+        if($puesto->en_uso){
+            if($request->conectada_rack){
+                $request->validate([
+                    'nombre' => 'required',
+                    'slug' => "required|unique:puestos,slug,$puesto->id",
+                    'estado' => 'required',
+                    'conmutador_id' => 'required',
+                    /* 'direccion_ip' => 'required', */
+                ]);
+            }else{
+                $request->validate([
+                    'nombre' => 'required',
+                    'slug' => "required|unique:puestos,slug,$puesto->id",
+                    'estado' => 'required',
+                    /* 'direccion_ip' => 'required', */
+                ]);
+            }
+        }else{
+            if($request->en_uso){
+                if($request->conectada_rack){
+                    $request->validate([
+                        'nombre' => 'required',
+                        'slug' => "required|unique:puestos,slug,$puesto->id",
+                        'estado' => 'required',
+                        'conmutador_id' => 'required',
+                        'direccion_ip' => 'required',
+                    ]);
+                }else{
+                    $request->validate([
+                        'nombre' => 'required',
+                        'slug' => "required|unique:puestos,slug,$puesto->id",
+                        'estado' => 'required',
+                        'direccion_ip' => 'required',
+                    ]);
+                }
+            }else{
+                if($request->conectada_rack){
+                    $request->validate([
+                        'nombre' => 'required',
+                        'slug' => "required|unique:puestos,slug,$puesto->id",
+                        'estado' => 'required',
+                        'conmutador_id' => 'required',
+                    ]);
+                }else{
+                    $request->validate([
+                        'nombre' => 'required',
+                        'slug' => "required|unique:puestos,slug,$puesto->id",
+                        'estado' => 'required',
+                    ]);
+                }
+            }
+            
+        }
         
         $equipamiento = Equipamiento::findOrFail($puesto->equipamiento_id);
         $equipamiento->update([
             'descripcion' => $request->descripcion_equipamiento,
-            'fecha_actualizacion' => $request->fecha_limpieza,
+            'fecha_actualizacion' => $request->fecha_actualizacion,
         ]);
 
-        $conexion = Conexion::findOrFail($puesto->conexion_id);
         
-        if($request->conectada_rack){
-            $conexion->update([
-                'boca_patch' => $request->boca_patch,
-                'boca_switch' => $request->boca_switch,
-                'conectada_rack' => $request->conectada_rack,
-                'fecha_impactada' => $request->fecha_impactada,
-                'conmutador_id' => $request->conmutador_id,
-            ]);
+
+        if($puesto->en_uso == 0 && $request->en_uso == 1){
+            $ips = Ip::select('id','direccion_ip','estado')
+                    ->where('direccion_ip', '=', $request->direccion_ip)
+                    ->get();
+            if($ips->count()){
+                foreach($ips as $ip){
+                    if($ip->estado == 0){
+                        $ip->update([
+                            'estado' => 1,
+                        ]);
+                    }
+                    else{
+                        return redirect()->route('admin.puestos.index')->with('ip', 'fail');    
+                    }
+                }
+            }
+            else{
+                $ip = Ip::create([
+                    'direccion_ip' => $request->direccion_ip,
+                    'estado' => 1,
+                ]);
+            }
+        }
+
+        $conexion = Conexion::findOrFail($puesto->conexion_id);
+
+        if($puesto->en_uso){
+            if($request->conectada_rack){
+                $conexion->update([
+                    'boca_patch' => $request->boca_patch,
+                    'boca_switch' => $request->boca_switch,
+                    'conectada_rack' => $request->conectada_rack,
+                    'en_uso' => 1,
+                    'fecha_impactada' => $request->fecha_impactada,
+                    'conmutador_id' => $request->conmutador_id,
+                    /* 'ip_id' => $ip->id, */
+                ]);
+            }
+            else{
+                $conexion->update([
+                    'boca_patch' => 0,
+                    'boca_switch' => 0,
+                    'conectada_rack' => $request->conectada_rack,
+                    'en_uso' => 1,
+                    'fecha_impactada' => null,
+                    'conmutador_id' => null,
+                    /* 'ip_id' => $ip->id, */
+                ]);
+            }
         }
         else{
-            $conexion->update([
-                'boca_patch' => 0,
-                'boca_switch' => 0,
-                'conectada_rack' => $request->conectada_rack,
-                'fecha_impactada' => null,
-                'conmutador_id' => null,
-            ]);
+            if($request->en_uso){
+                if($request->conectada_rack){
+                    $conexion->update([
+                        'boca_patch' => $request->boca_patch,
+                        'boca_switch' => $request->boca_switch,
+                        'conectada_rack' => $request->conectada_rack,
+                        'en_uso' => $request->en_uso,
+                        'fecha_impactada' => $request->fecha_impactada,
+                        'conmutador_id' => $request->conmutador_id,
+                        'ip_id' => $ip->id,
+                    ]);
+                }
+                else{
+                    $conexion->update([
+                        'boca_patch' => 0,
+                        'boca_switch' => 0,
+                        'conectada_rack' => $request->conectada_rack,
+                        'en_uso' => $request->en_uso,
+                        'fecha_impactada' => null,
+                        'conmutador_id' => null,
+                        'ip_id' => $ip->id,
+                    ]);
+                }
+            }
         }
 
-        return redirect()->route('admin.puestos.index')->with('edit', 'ok');
+        $puesto->update([
+            'nombre' => $request->nombre,
+            'slug' => $request->slug,
+            'descripcion' => $request->descripcion,
+            'estado' => $request->estado,
+            'referencia_lugar' => $request->referencia_lugar,
+            'fecha_limpieza' => $request->fecha_limpieza,
+            'sector_id' => $request->sector_id,
+        ]);
 
+        return redirect()->route('admin.puestos.index')->with('edit', 'ok');
     }
 
     /**

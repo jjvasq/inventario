@@ -24,7 +24,7 @@
 
     @if ($puestos->count()) {{-- Si hay alguno lo muestra --}}
         <div class="card-body">
-            <table class="table table-sm table-striped">
+            <table class="table table-striped">
                 <thead class="table table-bordered">
                     <tr>
                         <th style="width: 60px" wire:click="order('ips.direccion_ip')">

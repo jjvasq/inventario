@@ -83,7 +83,11 @@
                           
                             <td width="100px">
                                 @if ($ip->estado == 1)
-                                    <a class="liberar-ip btn btn-dark btn-sm" href="{{route('admin.ips.liberar', $ip->conexion_id)}}"><i class="fas fa-bolt mt-1"></i> Liberar</a>
+                                    <form class="liberar-ip"  action="{{route('admin.ips.liberar', $ip->conexion_id)}}" method="get">
+                                        <button type="submit" class="btn btn-dark btn-sm"><i class="fas fa-bolt mt-1"></i> Liberar</button>
+                                    </form>
+
+                                    {{-- <a class="liberar-ip btn btn-dark btn-sm" href="{{route('admin.ips.liberar', $ip->conexion_id)}}"><i class="fas fa-bolt mt-1"></i> Liberar</a> --}}
                                 @else
                                     <a class="btn btn-default btn-sm" href="#"><i class="fas fa-bolt mt-1"></i> Libre</a>
                                 @endif

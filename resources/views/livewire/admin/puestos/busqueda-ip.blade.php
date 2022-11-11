@@ -43,7 +43,11 @@
                                         @if ($ip->estado == 1)
                                             <span>Activo <i class="fas fa-bolt" style="color:darkorange"></i></span>
                                         @else
-                                            <span>Libre <i class="fas fa-check" style="color:green"></i></span>
+                                            @if ($ip->estado == 0)
+                                                <span>Libre <i class="fas fa-check" style="color:green"></i></span>    
+                                            @else
+                                                <span>Reservado <i class="fas fa-eye" style="color:brown"></i></span>
+                                            @endif
                                         @endif
                                     </td>
                                 </tr>
