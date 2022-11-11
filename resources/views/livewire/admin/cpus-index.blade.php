@@ -71,8 +71,8 @@
                         <th>Descrip.</th>
                         <th>N°Patrimonial</th>
                         <th>Estado</th>
-                        <th>EquipID</th>
-                        <th colspan="2" class="text-bold text-danger text-center">ACCIONES</th>
+                        <th>Nombre Puesto</th>
+                        <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,7 +92,11 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <p class="mx-3">{{ $cpu->descripcion }}</p>
+                                            @if ($cpu->descripcion != null)
+                                                <p class="mx-3">{{ $cpu->descripcion }}</p>
+                                            @else
+                                            <p class="mx-3">S/D</p>
+                                            @endif
                                         </li>
                                     </ul>
                                 </div>
@@ -109,11 +113,30 @@
                                 @if ($cpu->estado == 1)
                                     <small class="text-primary">Activo</small>
                                 @else
-                                    <small class="text-danger">Baja</small>
+                                    @if ($cpu->estado == 0)
+                                        <small class="text-danger">Baja</small>    
+                                    @else
+                                        @if ($cpu->estado == 2)
+                                            <small class="text-danger">En Reparación</small>
+                                        @else
+                                            <small class="text-danger">Hurtado</small>
+                                        @endif
+                                    @endif
+                                    
                                 @endif
 
                             </td>
-                            <td>{{ $cpu->equipamiento_id}}</td>
+                            <td>
+                                @if ($cpu->nombre_puesto != null)
+                                    {{ $cpu->nombre_puesto}}
+                                @else
+                                    <p class="text-bold text-center text-slate-900">Sin Puesto Asignado</p>
+                                @endif
+                            </td>
+                            <td width="10px">
+                                <a class="btn btn-success btn-sm"
+                                    href="{{ route('admin.cpus.show', $cpu) }}">Detalle</a>
+                            </td>
                             <td width="10px">
                                 <a class="btn btn-primary btn-sm"
                                     href="{{ route('admin.cpus.edit', $cpu) }}">Editar</a>

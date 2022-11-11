@@ -28,10 +28,10 @@ class CpuController extends Controller
     public function create()
     {
         $estados = [
-            '3' => 'Hurtado',
-            '2' => 'En Reparación',
             '1' => 'Activo',
-            '0' => 'Baja'
+            '0' => 'Baja',
+            '2' => 'En Reparación',
+            '3' => 'Hurtado',
         ];
 
         /* $equipamientos = Equipamiento::pluck('descripcion', 'id'); */
@@ -66,7 +66,7 @@ class CpuController extends Controller
      */
     public function show(Cpu $cpu)
     {
-        return view('admin.cpu.show', compact('cpu'));
+        return view('admin.cpus.show', compact('cpu'));
     }
 
     /**

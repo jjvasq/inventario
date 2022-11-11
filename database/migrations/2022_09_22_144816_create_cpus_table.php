@@ -19,6 +19,8 @@ class CreateCpusTable extends Migration
             $table->string('macaddress', 100);
             $table->string('procesador', 100);
             $table->string('ram_modelo', 50)->default('DDR 4');
+            $table->string('disco_tec', 50)->default('SSD');
+            $table->string('disco_cap', 50)->default(240);
             $table->string('patrimonial', 50)->nullable();
             $table->tinyInteger('ram_cant_gb')->default(8);
             $table->string('sistema_operativo', 50)->default('Windows 10');

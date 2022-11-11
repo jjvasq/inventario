@@ -27,11 +27,13 @@ class CpusIndex extends Component
 
     public function render()
     {
-        $cpus = Cpu::where('id', 'LIKE', "%" . $this->search . "%")
-        ->orWhere('macaddress', 'LIKE', "%" . $this->search . "%")
-        ->orWhere('procesador', 'LIKE', "%" . $this->search . "%")
-        ->orderby($this->sort, $this->direction)
-        ->paginate($this->cant);
+
+        $cpus = Cpu::leftjoin('puestos','cpus.equipamiento_id','=','puestos.equipamiento_id')
+                    ->select('cpus.*', 'puestos.nombre as nombre_puesto')
+                    ->where('macaddress', 'LIKE', "%" . $this->search . "%")
+                    ->orWhere('puestos.nombre', 'LIKE', "%" . $this->search . "%")
+                    ->orderby($this->sort, $this->direction)
+                    ->paginate($this->cant);
 
         return view('livewire.admin.cpus-index', compact('cpus'));
     }
