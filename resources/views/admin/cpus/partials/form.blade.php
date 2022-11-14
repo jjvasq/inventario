@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<div class="row">
+{{-- <div class="row">
     <div class="form-group col-12 col-md-6">
         {!! Form::label('disco_tec', 'Disco-Tecnología:') !!}
         {!! Form::text('disco_tec', 'ssd', ['class' => 'form-control', 'placeholder' => 'SSD']) !!}
@@ -53,7 +53,7 @@
         {!! Form::label('disco_cap', 'Disco-Capacidad (GB):') !!}
         {!! Form::number('disco_cap', 240, ['class' => 'form-control', 'placeholder' => 'Cantidad en GB (ej: 240)']) !!}
     </div>
-</div>
+</div> --}}
 
 <div class="row">
     <div class="form-group col-12 col-md-8">
@@ -70,13 +70,14 @@
             {!! Form::label('patrimonial', 'Patrimonial:') !!}
             {!! Form::text('patrimonial', null, ['class' => 'form-control', 'placeholder' => '-']) !!}
         </div>
-        <div class="form-group mt-5">
-            {!! Form::label('disco_tec', 'Disco-Tecnología:') !!}
+        <h5 class="text-bold">Disco</h5>
+        <div class="form-group">
+            {!! Form::label('disco_tec', 'Tecnología:') !!}
             {!! Form::text('disco_tec', 'ssd', ['class' => 'form-control', 'placeholder' => 'SSD']) !!}
         </div>
         
         <div class="form-group">
-            {!! Form::label('disco_cap', 'Disco-Capacidad (GB):') !!}
+            {!! Form::label('disco_cap', 'Capacidad (GB):') !!}
             {!! Form::number('disco_cap', 240, ['class' => 'form-control', 'placeholder' => 'Cantidad en GB (ej: 240)']) !!}
         </div>
     </div>

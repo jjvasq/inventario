@@ -70,7 +70,7 @@
                         <th>IdS</th>
                         <th>IdC</th>
                         <th>IdE</th>
-                        <th>En Uso</th>
+                        <th>En.Uso</th>
                         <th>IP</th>
                         <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
@@ -140,7 +140,7 @@
                                     <span class="badge bg-danger">No</span>
                                  @endif
                             </td>
-                            <td>
+                            <td width="128px" style="align-content: center">
                                  @if ($puesto->en_uso == 1)
                                     <form class="liberar-ip" action="{{ route('admin.puestos.desconectar', $puesto->conexion_id) }}" method="get">
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-bolt mt-1"></i> Desconectar</button>
