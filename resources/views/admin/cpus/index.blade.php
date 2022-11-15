@@ -30,6 +30,18 @@
         }
     </script>
 
+    @if (session('editar') == 'ok')
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Se Editó Correctamente El CPU.!',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    </script>
+    @endif
+
     @if (session('eliminar') == 'ok')
         <script>
             Swal.fire({

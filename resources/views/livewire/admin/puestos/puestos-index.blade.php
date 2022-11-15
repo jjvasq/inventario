@@ -65,8 +65,8 @@
                                 <i class="fas fa-sort mt-1 float-right"></i>
                             @endif
                         </th>
-                        <th>Estado</th>
-                        <th>Referencia</th>
+                        
+                        
                         <th>IdS</th>
                         <th>IdC</th>
                         <th>IdE</th>
@@ -74,13 +74,14 @@
                         <th>IP</th>
                         {{-- <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th> --}}
                         <th class="text-bold text-primary text-center">ACCIONES</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($puestos as $puesto)
                         <tr>
                             <td>{{ $puesto->id }}</td>
-                            <td>{{ $puesto->nombre }}</td>
+                            <td class="text-bold">{{ $puesto->nombre }}</td>
                             <td>
                                 @if ($puesto->descripcion != null)
                                     {{ $puesto->descripcion}}
@@ -88,14 +89,8 @@
                                     <small class="text-secondary">S/D</small>
                                 @endif
                             </td>
-                            <td>
-                                @if ($puesto->estado == 1)
-                                    <small class="text-primary">Activo</small>
-                                @else
-                                    <small class="text-danger">No Activo</small>
-                                @endif
-                            </td>
-                            <td>
+                            
+                            {{-- <td>
                                 <div class="btn-group ml-3">
                                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
                                         data-toggle="dropdown">
@@ -112,7 +107,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </td>
+                            </td> --}}
                             <td>
                                 @if ($puesto->sector_id != null)
                                     {{ $puesto->sector_id }}
@@ -158,6 +153,22 @@
                            
                             <td>
                                 <div class="btn-group">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                                            data-toggle="dropdown">
+                                            <i class="fas fa-bars"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                @if ($puesto->referencia_lugar != null)
+                                                    <p class="mx-3">{{ $puesto->referencia_lugar }}</p>    
+                                                @else
+                                                    <p class="mx-3">Sin Referencia</p>
+                                                @endif
+                                                
+                                            </li>
+                                        </ul>
+                                    </div>
                                     <a class="btn btn-success btn-sm"
                                         href="{{ route('admin.puestos.show', $puesto) }}">
                                         <i class="fas fa-eye"></i>
@@ -178,6 +189,13 @@
                                     </form>
 
                                 </div>
+                            </td>
+                            <td class="text-center">
+                                @if ($puesto->estado == 1)
+                                    <small class="text-bold text-success">Activo</small>
+                                @else
+                                    <small class="text-bold text-danger">No Activo</small>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

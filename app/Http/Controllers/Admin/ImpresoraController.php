@@ -106,7 +106,7 @@ class ImpresoraController extends Controller
         ]);
         $impresora->update($request->all());
 
-        return redirect()->route('admin.impresoras.edit', $impresora)->with('info', 'La Impresora se actualizó correctamente');
+        return redirect()->route('admin.impresoras.index')->with('editar', 'ok');
     }
     
 

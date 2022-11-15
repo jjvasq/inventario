@@ -1,6 +1,6 @@
 <div class="form-group">
     {!! Form::label('nombre', 'Nombre:') !!}
-    {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el Nombre de de la Impresora']) !!}
+    {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el Nombre de la Impresora']) !!}
 
     @error('nombre')
         <span class="text-danger">{{ $message }}</span>
@@ -35,7 +35,7 @@
         
         <div class="form-group">
             {!! Form::label('serial', 'Serial:') !!}
-            {!! Form::text('serial', null, ['class' => 'form-control', 'placeholder' => 'SERIAL NUMBER']) !!}
+            {!! Form::text('serial', null, ['class' => 'form-control', 'placeholder' => '####']) !!}
             @error('serial')
                 <span class="text-danger">{{ $message }}</span>
             @enderror

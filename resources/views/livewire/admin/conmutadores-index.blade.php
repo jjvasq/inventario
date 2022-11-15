@@ -41,7 +41,7 @@
                             @endif
 
                         </th>
-                        <th wire:click="order('numero')">
+                        <th style="width: 80px" wire:click="order('numero')">
                             Num
                             @if ($sort == 'numero')
                                 @if ($direction == 'asc')
@@ -53,7 +53,7 @@
                                 <i class="fas fa-sort mt-1 float-right"></i>
                             @endif
                         </th>
-                        <th wire:click="order('marca')">
+                        <th style="width: 90px" wire:click="order('marca')">
                             Marca
                             @if ($sort == 'marca')
                                 @if ($direction == 'asc')
@@ -69,7 +69,7 @@
                         <th>Referencia</th>
                         <th>Rack</th>
                         <th>Sector</th>
-                        <th>Fecha Limpieza</th>
+                        <th class="text-center">F.Limpieza</th>
                         <th class="text-bold text-primary text-center">ACCIONES</th>
                     </tr>
                 </thead>
@@ -100,7 +100,7 @@
                                     <small class="text-secondary">S/A</small>
                                 @endif
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @if ($conmutador->sector_id == null)
                                     <small class="text-secondary">S/A</small>
                                 @else
@@ -108,7 +108,7 @@
                                 @endif
 
                             </td>
-                            <td>{{ $conmutador->fecha_limpieza }}</td>
+                            <td class="text-center text-danger">{{ $conmutador->fecha_limpieza }}</td>
 
                             <td>
                                 <div class="btn-group ml-3">

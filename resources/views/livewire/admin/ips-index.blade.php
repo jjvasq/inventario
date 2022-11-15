@@ -52,7 +52,18 @@
                                 <i class="fas fa-sort mt-1 float-right"></i>    
                             @endif
                         </th>
-                        <th>Estado</th>
+                        <th style="width: 100px" wire:click="order('estado')">
+                            Estado
+                            @if ($sort == 'estado')
+                                @if ($direction == 'asc')
+                                    <i class="fas fa-sort-alpha-up-alt mt-1 float-right"></i>
+                                @else
+                                    <i class="fas fa-sort-alpha-down-alt mt-1 float-right"></i>
+                                @endif
+                            @else
+                                <i class="fas fa-sort mt-1 float-right"></i>    
+                            @endif
+                        </th>
                         <th>Puesto</th>
                         <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
@@ -61,15 +72,15 @@
                     @foreach ($ips as $ip)
                         <tr>
                             <td>{{$ip->id}}</td>
-                            <td>{{$ip->direccion_ip}}</td>
-                            <td>
+                            <td class="text-bold">{{$ip->direccion_ip}}</td>
+                            <td class="text-center">
                                 @if ($ip->estado == 1)
                                     <small class="text-success">Activo</small>
                                 @else
                                     @if ($ip->estado == 0)
                                         <small class="text-info">LIBRE</small>
                                     @else
-                                        <small class="text-info">RESERVADO</small>
+                                        <small class="text-warning">RESERVADO</small>
                                     @endif
                                 @endif
                             </td>
@@ -81,16 +92,22 @@
                                 @endif
                             </td>
                           
-                            <td width="100px">
+                            <td width="95px">
                                 @if ($ip->estado == 1)
                                     <form class="liberar-ip"  action="{{route('admin.ips.liberar', $ip->conexion_id)}}" method="get">
                                         <button type="submit" class="btn btn-dark btn-sm"><i class="fas fa-bolt mt-1"></i> Liberar</button>
                                     </form>
-
-                                    {{-- <a class="liberar-ip btn btn-dark btn-sm" href="{{route('admin.ips.liberar', $ip->conexion_id)}}"><i class="fas fa-bolt mt-1"></i> Liberar</a> --}}
                                 @else
-                                    <a class="btn btn-default btn-sm" href="#"><i class="fas fa-bolt mt-1"></i> Libre</a>
+                                    <a class="btn btn-secondary disabled btn-sm" href="#">{{-- <i class="fas fa-bolt mt-1"></i> --}}S/Acción</a>
                                 @endif
+                                    {{-- <a class="liberar-ip btn btn-dark btn-sm" href="{{route('admin.ips.liberar', $ip->conexion_id)}}"><i class="fas fa-bolt mt-1"></i> Liberar</a> --}}
+                               {{--  @else
+                                    @if ($ip->estado == 0)
+                                        <a class="btn btn-default btn-sm" href="#"><i class="fas fa-bolt mt-1"></i> Libre</a>
+                                    @else
+                                        <a class="btn btn-default btn-sm" href="#"><i class="fas fa-bolt mt-1"></i> Reservado</a>
+                                    @endif
+                                @endif --}}
                                
                             </td>
                             <td width="10px">

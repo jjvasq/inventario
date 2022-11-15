@@ -103,7 +103,7 @@
                             <td>{{ $monitor->tamanio }}</td>
                             <td>{{ $monitor->modelo}}</td>
                             <td>{{ $monitor->serial }}</td>
-                            <td>
+                            <td class="text-center">
                                 @if ($monitor->patrimonial != null)
                                     {{$monitor->patrimonial}}
                                 @else
@@ -114,7 +114,7 @@
                                 @if ($monitor->nombre_puesto != null)
                                     {{ $monitor->nombre_puesto }}
                                 @else
-                                    <p class="text-bold text-center text-slate-900">Sin Puesto Asignado</p>
+                                    <p class="text-bold text-slate-900">Sin Puesto Asignado</p>
                                 @endif
                             </td>
                             <td>

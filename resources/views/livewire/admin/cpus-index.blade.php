@@ -112,7 +112,7 @@
                                 @if ($cpu->nombre_puesto != null)
                                     {{ $cpu->nombre_puesto }}
                                 @else
-                                    <p class="text-bold text-center text-slate-900">Sin Puesto Asignado</p>
+                                    <p class="text-bold text-slate-900">Sin Puesto Asignado</p>
                                 @endif
                             </td>
                             <td>

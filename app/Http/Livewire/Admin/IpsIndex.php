@@ -32,6 +32,7 @@ class IpsIndex extends Component
                     ->leftjoin('puestos','conexiones.id','=','puestos.conexion_id')
                     ->select('ips.*','conexiones.id as conexion_id','puestos.nombre as nombre_puesto')
                     ->where('direccion_ip', 'LIKE', "%".$this->search."%")
+                    ->orWhere('puestos.nombre', 'LIKE', "%".$this->search."%")
                     ->orderby($this->sort, $this->direction)
                     ->paginate($this->cant);
         return view('livewire.admin.ips-index', compact('ips'));

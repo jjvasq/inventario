@@ -117,7 +117,7 @@
                                 @if ($scanner->nombre_puesto != null)
                                     {{$scanner->nombre_puesto}}
                                 @else
-                                    <p class="text-secondary">Sin Puesto Asignado</p>
+                                    <p class="text-secondary">S/D</p>
                                 @endif
                             </td>
                             
@@ -151,6 +151,11 @@
                                             </li>
                                         </ul>
                                     </div>
+
+                                    <a class="btn btn-sm btn-success"
+                                        href="{{ route('admin.scanners.show', $scanner) }}">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
 
                                     <a class="btn btn-primary btn-sm"
                                         href="{{ route('admin.scanners.edit', $scanner) }}">

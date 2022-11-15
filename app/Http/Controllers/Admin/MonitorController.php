@@ -109,7 +109,7 @@ class MonitorController extends Controller
 
         $monitore->update($request->all());
 
-        return redirect()->route('admin.monitores.edit', $monitore)->with('info', 'El Monitor se actualizó correctamente');
+        return redirect()->route('admin.monitores.index')->with('editar', 'ok');
     }
 
     /**

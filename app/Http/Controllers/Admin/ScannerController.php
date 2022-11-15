@@ -55,7 +55,7 @@ class ScannerController extends Controller
         ]);
 
         $scanner = Scanner::create($request->all());
-        return redirect()->route('admin.scanners.edit', $scanner)->with('info', 'La Impresora se creó correctamente');
+        return redirect()->route('admin.scanners.edit', $scanner)->with('info', 'El Scanner se creó correctamente');
     }
 
     /**
@@ -106,7 +106,7 @@ class ScannerController extends Controller
         ]);
         $scanner->update($request->all());
 
-        return redirect()->route('admin.scanners.edit', $scanner)->with('info', 'El Scanner se actualizó correctamente');
+        return redirect()->route('admin.scanners.index')->with('editar', 'ok');
     }
 
     /**

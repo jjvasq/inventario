@@ -10,7 +10,7 @@
     <div class="form-group col-12 col-md-6">
         {!! Form::label('procesador', 'Procesador:') !!}
         {!! Form::text('procesador', null, ['class' => 'form-control', 'placeholder' => 'Procesador (Intel I5 10ma)']) !!}
-        @error('descripcion')
+        @error('procesador')
             <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>

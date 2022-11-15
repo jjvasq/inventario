@@ -51,7 +51,7 @@ class CpuController extends Controller
             'macaddress' => 'required',
             'procesador' => 'required',
             'ram_modelo' => 'required',
-            'ram_cantidad_gb' => 'required',
+            'ram_cant_gb' => 'required',
         ]);
 
         $cpu = Cpu::create($request->all());
@@ -102,12 +102,12 @@ class CpuController extends Controller
             'macaddress' => 'required',
             'procesador' => 'required',
             'ram_modelo' => 'required',
-            'ram_cantidad_gb' => 'required',
+            'ram_cant_gb' => 'required',
         ]);
 
         $cpu->update($request->all());
 
-        return redirect()->route('admin.cpus.edit', $cpu)->with('info', 'El CPU se actualizó correctamente');
+        return redirect()->route('admin.cpus.index')->with('editar', 'ok');
     }
 
     /**

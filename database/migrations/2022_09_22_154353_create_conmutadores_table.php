@@ -19,7 +19,7 @@ class CreateConmutadoresTable extends Migration
             $table->tinyInteger('numero');
             $table->string('marca', 50);
             $table->string('descripcion', 255)->nullable();
-            $table->string('referencia_lugar', 50);
+            $table->string('referencia_lugar', 255);
             $table->date('fecha_limpieza');
 
             $table->unsignedBigInteger('rack_id')->nullable();

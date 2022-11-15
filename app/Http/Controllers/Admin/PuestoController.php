@@ -244,8 +244,8 @@ class PuestoController extends Controller
      */
     public function update(Request $request, Puesto $puesto)
     {
-        if($puesto->en_uso){
-            if($request->conectada_rack){
+        if($puesto->en_uso == 1){
+            if($request->conectada_rack == 1){
                 $request->validate([
                     'nombre' => 'required',
                     'slug' => "required|unique:puestos,slug,$puesto->id",
@@ -262,8 +262,8 @@ class PuestoController extends Controller
                 ]);
             }
         }else{
-            if($request->en_uso){
-                if($request->conectada_rack){
+            if($request->en_uso == 1){
+                if($request->conectada_rack == 1){
                     $request->validate([
                         'nombre' => 'required',
                         'slug' => "required|unique:puestos,slug,$puesto->id",
@@ -280,7 +280,7 @@ class PuestoController extends Controller
                     ]);
                 }
             }else{
-                if($request->conectada_rack){
+                if($request->conectada_rack == 1){
                     $request->validate([
                         'nombre' => 'required',
                         'slug' => "required|unique:puestos,slug,$puesto->id",
@@ -332,33 +332,27 @@ class PuestoController extends Controller
 
         $conexion = Conexion::findOrFail($puesto->conexion_id);
 
-        if($puesto->en_uso){
-            if($request->conectada_rack){
+        if($request->en_uso == null){
+            if($request->conectada_rack == 1){
                 $conexion->update([
                     'boca_patch' => $request->boca_patch,
                     'boca_switch' => $request->boca_switch,
                     'conectada_rack' => $request->conectada_rack,
-                    'en_uso' => 1,
                     'fecha_impactada' => $request->fecha_impactada,
                     'conmutador_id' => $request->conmutador_id,
-                    /* 'ip_id' => $ip->id, */
-                ]);
-            }
-            else{
+                ]);    
+            }else{
                 $conexion->update([
                     'boca_patch' => 0,
                     'boca_switch' => 0,
-                    'conectada_rack' => $request->conectada_rack,
-                    'en_uso' => 1,
+                    'conectada_rack' => 0,
                     'fecha_impactada' => null,
                     'conmutador_id' => null,
-                    /* 'ip_id' => $ip->id, */
-                ]);
+                ]);    
             }
-        }
-        else{
-            if($request->en_uso){
-                if($request->conectada_rack){
+        }else{
+            if($request->conectada_rack == 1){
+                if($request->en_uso == 1){
                     $conexion->update([
                         'boca_patch' => $request->boca_patch,
                         'boca_switch' => $request->boca_switch,
@@ -368,16 +362,37 @@ class PuestoController extends Controller
                         'conmutador_id' => $request->conmutador_id,
                         'ip_id' => $ip->id,
                     ]);
+                }else{
+                    $conexion->update([
+                        'boca_patch' => $request->boca_patch,
+                        'boca_switch' => $request->boca_switch,
+                        'conectada_rack' => $request->conectada_rack,
+                        'en_uso' => 0,//0
+                        'fecha_impactada' => $request->fecha_impactada,
+                        'conmutador_id' => $request->conmutador_id,
+                        'ip_id' => null,
+                    ]);
                 }
-                else{
+            }else{
+                if($request->en_uso == 1){
                     $conexion->update([
                         'boca_patch' => 0,
                         'boca_switch' => 0,
-                        'conectada_rack' => $request->conectada_rack,
+                        'conectada_rack' => 0,
                         'en_uso' => $request->en_uso,
                         'fecha_impactada' => null,
                         'conmutador_id' => null,
                         'ip_id' => $ip->id,
+                    ]);
+                }else{
+                    $conexion->update([
+                        'boca_patch' => 0,
+                        'boca_switch' => 0,
+                        'conectada_rack' => 0,
+                        'en_uso' => 0,//0
+                        'fecha_impactada' => null,
+                        'conmutador_id' => null,
+                        'ip_id' => null,
                     ]);
                 }
             }

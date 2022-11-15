@@ -111,7 +111,7 @@
                                         <h3 class="card-title">Switch ID: {{ $conexion->conmutador->id }}</h3>
                                     </div>
                                     <div class="card-body">
-                                        <h6 class="text-dark"><u>Número:</u> {{ $conexion->conmutador->numero }}</h6>
+                                        <h6 class="text-dark"><u>Número Switch:</u> {{ $conexion->conmutador->numero }}</h6>
                                         <h6 class="text-secondary"><u>Marca:</u> {{ $conexion->conmutador->marca }}</h6>
                                         <h6 class="text-secondary"><u>Descripción:</u>
                                             {{ $conexion->conmutador->descripcion }}</h6>
@@ -145,13 +145,14 @@
                                 @else
                                     <div class="card card-primary">
                                         <div class="card-header">
-                                            <h3 class="card-title">El Switch se encuentra en el sector:
-                                                {{ $conexion->conmutador->sector->nombre }}</h3>
+                                            <h3 class="card-title">Switch NO Rackeado</h3>
                                         </div>
                                         <div class="card-body">
-                                            <h6 class="text-secondary"><u>Descripción:</u>
+                                            <h6>El Switch se encuentra en el sector:
+                                                {{ $conexion->conmutador->sector->nombre }}</h6>
+                                            <h6 class="text-secondary"><u>Descripción - Sector:</u>
                                                 {{ $conexion->conmutador->sector->descripcion }}</h6>
-                                            <h6 class="text-secondary"><u>Lugar de Referencia:</u>
+                                            <h6 class="text-secondary"><u>Lugar de Referencia Sector:</u>
                                                 {{ $conexion->conmutador->sector->referencia_lugar }}</h6>
                                             @if ($conexion->conmutador->sector->planta == 1)
                                                 <h6><u>Planta - Alta</u></h6>

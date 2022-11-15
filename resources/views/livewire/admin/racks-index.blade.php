@@ -66,7 +66,7 @@
                         </th>
                         {{-- <th>Referencia</th> --}}
                         <th>Planta</th>
-                        <th class="text-center">Fecha Limpieza</th>
+                        <th class="text-center">F.Limpieza</th>
                         <th class="text-bold text-primary">ACCIONES</th>
                     </tr>
                 </thead>

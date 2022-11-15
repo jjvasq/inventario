@@ -42,6 +42,18 @@
         </script>
     @endif
 
+    @if (session('editar') == 'ok')
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'El Scanner se editó Correctamente.!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
+
     <script>
         $('.formulario-eliminar').submit(function(e) {
             e.preventDefault();

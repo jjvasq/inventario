@@ -43,12 +43,3 @@
         Baja
     </label>
 </div>
-
-<div class="form-group">
-    {!! Form::label('fecha_limpieza', 'Fecha de Limpieza:', ['class' => 'mr-3']) !!}
-    {!! Form::date('fecha_limpieza', \Carbon\Carbon::now()) !!}
-
-    {{-- @error('fecha_limpieza')
-        <span class="text-danger">{{$message}}</span>
-    @enderror --}}
-</div>

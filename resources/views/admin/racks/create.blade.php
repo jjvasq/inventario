@@ -14,6 +14,11 @@
              
                 @include('admin.racks.partials.form')
 
+                <div class="form-group">
+                    {!! Form::label('fecha_limpieza', 'Fecha de Limpieza:', ['class' => 'mr-3']) !!}
+                    {!! Form::date('fecha_limpieza', \Carbon\Carbon::now()) !!}        
+                </div>
+
                 {!! Form::submit('Crear Rack', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>
