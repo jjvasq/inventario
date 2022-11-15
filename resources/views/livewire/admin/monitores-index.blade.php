@@ -119,6 +119,10 @@
                             </td>
                             <td>
                                 <div class="btn-group ml-2">
+                                    <a class="btn btn-sm btn-success"
+                                        href="{{ route('admin.monitores.show', $monitor) }}">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
                                     <a class="btn btn-primary btn-sm"
                                         href="{{ route('admin.monitores.edit', $monitor) }}">
                                         <i class="fas fa-pen"></i>
