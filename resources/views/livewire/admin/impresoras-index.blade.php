@@ -162,6 +162,10 @@
                                         </ul>
                                     </div>
 
+                                    <a class="btn btn-sm btn-success" href="{{ route('admin.impresoras.show', $impresora) }}">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+
                                     <a class="btn btn-primary btn-sm"
                                         href="{{ route('admin.impresoras.edit', $impresora) }}">
                                         <i class="fas fa-pen"></i>

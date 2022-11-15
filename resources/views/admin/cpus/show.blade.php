@@ -28,12 +28,16 @@
                     <div id="collapseOne" class="collapse show" data-parent="#accordion" style="">
                         <div class="card-body">
                             <div class="row">
-                                <div class="callout callout-info col-10">
+                                <div class="callout callout-info col-5 col-md-5">
                                     <h5>Macaddress:</h5>
                                     <p>{{$cpu->macaddress}}</p>
                                 </div>
+                                <div class="col-4 col-md-5 callout callout-success">
+                                    <h5>Procesador:</h5>
+                                    <p>{{$cpu->procesador}}</p>
+                                </div>
                                 
-                                <div class="col-2">
+                                <div class="col-3 col-md-2">
                                     <h5>Estado:</h5>
                                     @if ($cpu->estado==1)
                                         <button type="button" class="btn btn-success btn-block"><i class="fa fa-check"></i> Activo</button>
@@ -55,9 +59,9 @@
                             </div>
                             
                             <div class="row">
-                                <div class="col-6 col-md-3 callout callout-success">
-                                    <h5>Procesador</h5>
-                                    <p>{{$cpu->procesador}}</p>
+                                <div class="col-6 col-md-3 callout callout-info">
+                                    <h5>Sistema Operativo:</h5>
+                                    <p>{{$cpu->sistema_operativo}}</p>
                                 </div>
                                 <div class="col-6 col-md-3 callout callout-info">
                                     <h5>RAM:</h5>
@@ -68,8 +72,12 @@
                                     <p>{{$cpu->disco_tec}} - {{$cpu->disco_cap}}</p>
                                 </div>
                                 <div class="col-6 col-md-3 callout callout-info">
-                                    <h5>Sistema Operativo:</h5>
-                                    <p>{{$cpu->sistema_operativo}}</p>
+                                    <h5>Patrimonial</h5>
+                                    @if ($cpu->patrimonial != null)
+                                        <p>{{$cpu->patrimonial}}</p>
+                                    @else
+                                        -
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -86,9 +94,9 @@
                     </div>
                     <div id="collapseTwo" class="collapse" data-parent="#accordion" style="">
                         <div class="card-body">
-                            @if ($cpu->descripción != null)
+                            @if ($cpu->descripcion != null)
                                 <div class="callout callout-info">
-                                    <p>{{$cpu->descripción}}</p>
+                                    <p>{{$cpu->descripcion}}</p>
                                 </div>
                             @else
                                 <div class="callout callout-info">
