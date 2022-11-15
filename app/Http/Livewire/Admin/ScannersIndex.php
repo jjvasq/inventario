@@ -27,12 +27,14 @@ class ScannersIndex extends Component
 
     public function render()
     {
-        $scanners = Scanner::where('id', 'LIKE', "%" . $this->search . "%")
-            ->orWhere('nombre', 'LIKE', "%" . $this->search . "%")
-            ->orWhere('modelo', 'LIKE', "%" . $this->search . "%")
-            ->orWhere('serial', 'LIKE', "%" . $this->search . "%")
-            ->orderby($this->sort, $this->direction)
-            ->paginate($this->cant);
+        $scanners = Scanner::leftjoin('puestos','scanners.equipamiento_id','=','puestos.equipamiento_id')
+                    ->select('scanners.*','puestos.nombre as nombre_puesto')
+                    ->where('scanners.id', 'LIKE', "%" . $this->search . "%")
+                    ->orWhere('scanners.nombre', 'LIKE', "%" . $this->search . "%")
+                    ->orWhere('modelo', 'LIKE', "%" . $this->search . "%")
+                    ->orWhere('serial', 'LIKE', "%" . $this->search . "%")
+                    ->orderby($this->sort, $this->direction)
+                    ->paginate($this->cant);
         return view('livewire.admin.scanners-index', compact('scanners'));
     }
 

@@ -77,46 +77,34 @@
                                 <i class="fas fa-sort mt-1 float-right"></i>
                             @endif
                         </th>
-                        <th>Descripcion</th>
                         <th>N°Patrimonial</th>
+                        <th>Nombre.Puesto</th>
+                        
+                        <th class="text-bold text-primary text-center">ACCIONES</th>
                         <th>Estado</th>
-                        <th>Eq-ID</th>
-                        <th colspan="2" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($scanners as $scanner)
                         <tr>
                             <td>{{ $scanner->id }}</td>
-                            <td>{{ $scanner->nombre }}</td>
-                            <td>
+                            <td class="text-bold">{{ $scanner->nombre }}</td>
+                            <td class="text-center">
                                 @if ($scanner->modelo != null)
                                     {{ $scanner->modelo }}
                                 @else
                                     <small class="text-secondary">S/A</small>
                                 @endif
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @if ($scanner->serial != null)
                                     {{ $scanner->serial }}
                                 @else
                                     <small class="text-secondary">S/A</small>
                                 @endif
                             </td>
-                            <td>
-                                <div class="btn-group ml-3">
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
-                                        data-toggle="dropdown">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <p class="mx-3">{{ $scanner->descripcion }}</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>
+                            
+                            <td class="text-center">
                                 @if ($scanner->patrimonial != null)
                                     {{$scanner->patrimonial}}
                                 @else
@@ -124,21 +112,16 @@
                                 @endif
 
                             </td>
-                            <td>
-                                @if ($scanner->estado == 1)
-                                    <small class="text-primary">Activo</small>
+                          
+                            <td class="">
+                                @if ($scanner->nombre_puesto != null)
+                                    {{$scanner->nombre_puesto}}
                                 @else
-                                    <small class="text-danger">Baja</small>
+                                    <p class="text-secondary">Sin Puesto Asignado</p>
                                 @endif
                             </td>
-                            <td>
-                                @if ($scanner->equipamiento_id != null)
-                                    {{ $scanner->equipamiento_id }}
-                                @else
-                                    <small class="text-secondary">S/A</small>
-                                @endif
-                            </td>
-                            <td width="10px">
+                            
+                            {{-- <td width="10px">
                                 <a class="btn btn-primary btn-sm"
                                     href="{{ route('admin.scanners.edit', $scanner) }}">Editar</a>
                             </td>
@@ -149,6 +132,55 @@
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                 </form>
+                            </td> --}}
+
+                            <td>
+                                <div class="btn-group">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                                            data-toggle="dropdown">
+                                            <i class="fas fa-bars"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                @if ($scanner->descripcion != null)
+                                                    <p class="mx-3">{{ $scanner->descripcion }}</p>    
+                                                @else
+                                                    <p class="mx-3">Sin Descripción</p>
+                                                @endif
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{ route('admin.scanners.edit', $scanner) }}">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+
+                                    <form class="formulario-eliminar"
+                                        action="{{ route('admin.scanners.destroy', $scanner) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                @if ($scanner->estado == 1)
+                                    <small class="text-bold text-success">Activo</small>
+                                @else
+                                    @if ($scanner->estado == 0)
+                                        <small class="text-bold text-danger">Baja</small>
+                                    @else
+                                        @if ($scanner->estado == 2)
+                                            <small class="text-bold text-danger">En Reparación</small>
+                                        @else
+                                            <small class="text-bold text-danger">Hurtado</small>
+                                        @endif
+                                    @endif
+                                @endif
                             </td>
                         </tr>
                     @endforeach
