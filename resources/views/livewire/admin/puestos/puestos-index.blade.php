@@ -72,7 +72,8 @@
                         <th>IdE</th>
                         <th>En.Uso</th>
                         <th>IP</th>
-                        <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
+                        {{-- <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th> --}}
+                        <th class="text-bold text-primary text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -154,27 +155,29 @@
                                     <span class="badge bg-secondary">No conectado</span>
                                  @endif
                             </td>
+                           
                             <td>
-                                <a class="btn btn-success btn-sm"
-                                    href="{{ route('admin.puestos.show', $puesto) }}">
-                                    <i class="fas fa-eye mt-1"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary btn-sm"
-                                    href="{{ route('admin.puestos.edit', $puesto) }}">
-                                    <i class="fas fa-pen mt-1"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <form class="formulario-eliminar"
-                                    action="{{ route('admin.puestos.destroy', $puesto) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash mt-1"></i>
-                                    </button>
-                                </form>
+                                <div class="btn-group">
+                                    <a class="btn btn-success btn-sm"
+                                        href="{{ route('admin.puestos.show', $puesto) }}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{ route('admin.puestos.edit', $puesto) }}">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+
+                                    <form class="formulario-eliminar"
+                                        action="{{ route('admin.puestos.destroy', $puesto) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+
+                                </div>
                             </td>
                         </tr>
                     @endforeach

@@ -64,10 +64,10 @@
                                 <i class="fas fa-sort mt-1 float-right"></i>    
                             @endif
                         </th>
-                        <th>Referencia</th>
+                        {{-- <th>Referencia</th> --}}
                         <th>Planta</th>
-                        <th>Fecha Limpieza</th>
-                        <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
+                        <th class="text-center">Fecha Limpieza</th>
+                        <th class="text-bold text-primary">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,7 +76,7 @@
                             <td>{{$rack->id}}</td>
                             <td>{{$rack->nombre}}</td>
                             <td>{{$rack->descripcion}}</td>
-                            <td>
+                            {{-- <td>
                                 <div class="btn-group ml-3">
                                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
                                         data-toggle="dropdown">
@@ -88,18 +88,53 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </td>
+                            </td> --}}
                             <td>
                                 @if ($rack->planta == 1)
-                                    <small class="text-success">Planta Alta</small>
+                                    <span class="badge bg-success">P. Alta</span>
                                 @else
-                                    <small class="text-info">Planta Baja</small>
+                                    <span class="badge bg-danger">P. Baja</span>
                                 @endif
                             </td>
-                            <td>{{$rack->fecha_limpieza}}</td>
-                            <td width="10px">
+                            <td class=" text-danger text-center">{{$rack->fecha_limpieza}}</td>
+
+                            <td>
+                                <div class="btn-group ml">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                                            data-toggle="dropdown">
+                                            <i class="fas fa-bars"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <p class="mx-3">{{ $rack->referencia_lugar }}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <a class="btn btn-success btn-sm"
+                                        href="{{route('admin.racks.show', $rack)}}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{route('admin.racks.edit', $rack)}}">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+
+                                    <form class="formulario-eliminar" action="{{route('admin.racks.destroy', $rack)}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+
+                            {{-- <td width="10px">
                                 <a class="btn btn-success btn-sm" href="{{route('admin.racks.show', $rack)}}">
-                                    {{-- <i class="fas fa-eye"></i> --}}Detalle
+                                    Detalle
                                 </a>
                             </td>
                             <td width="10px">
@@ -111,7 +146,7 @@
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                 </form>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

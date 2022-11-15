@@ -28,11 +28,14 @@ class MonitoresIndex extends Component
 
     public function render()
     {
-        $monitores = Monitor::where('id', 'LIKE', '%' . $this->search . '%')
+        $monitores = Monitor::leftjoin('puestos','monitores.equipamiento_id','=','puestos.equipamiento_id')
+            ->select('monitores.*','puestos.nombre as nombre_puesto')
+            ->where('monitores.id', 'LIKE', '%' . $this->search . '%')
             ->orWhere('marca', 'LIKE', '%' . $this->search . '%')
             ->orWhere('tamanio', 'LIKE', '%' . $this->search . '%')
             ->orWhere('modelo', 'LIKE', '%' . $this->search . '%')
             ->orWhere('serial', 'LIKE', '%' . $this->search . '%')
+            ->orWhere('puestos.nombre','LIKE','%' . $this->search . '%')
             ->orderby($this->sort, $this->direction)
             ->paginate($this->cant);
 

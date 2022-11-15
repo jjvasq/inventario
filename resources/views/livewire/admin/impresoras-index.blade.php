@@ -77,26 +77,25 @@
                                 <i class="fas fa-sort mt-1 float-right"></i>
                             @endif
                         </th>
-                        <th>Descripcion</th>
+                        <th>Nombre.Puesto</th>
                         <th>N°Patrimonial</th>
+                        <th class="text-bold text-primary text-center">ACCIONES</th>
                         <th>Estado</th>
-                        <th>Eq-ID</th>
-                        <th colspan="2" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($impresoras as $impresora)
                         <tr>
                             <td>{{ $impresora->id }}</td>
-                            <td>{{ $impresora->nombre }}</td>
-                            <td>
+                            <td class="text-bold">{{ $impresora->nombre }}</td>
+                            <td class="text-center">
                                 @if ($impresora->modelo != null)
                                     {{ $impresora->modelo }}
                                 @else
                                     <small class="text-secondary">S/A</small>
                                 @endif
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @if ($impresora->serial != null)
                                     {{ $impresora->serial }}
                                 @else
@@ -104,19 +103,14 @@
                                 @endif
                             </td>
                             <td>
-                                <div class="btn-group ml-3">
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
-                                        data-toggle="dropdown">
-                                        <i class="fas fa-bars"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <p class="mx-3">{{ $impresora->descripcion }}</p>
-                                        </li>
-                                    </ul>
-                                </div>
+                                @if ($impresora->nombre_puesto != null)
+                                    {{ $impresora->nombre_puesto }}
+                                @else
+                                    <small class="text-secondary">S/A</small>
+                                @endif
                             </td>
-                            <td>
+                            
+                            <td class="text-center">
                                 @if ($impresora->patrimonial != null)
                                     {{$impresora->patrimonial}}
                                 @else
@@ -124,7 +118,7 @@
                                 @endif
 
                             </td>
-                            <td>
+                            {{-- <td>
                                 @if ($impresora->estado == 1)
                                     <small class="text-primary">Activo</small>
                                 @else
@@ -137,8 +131,8 @@
                                 @else
                                     <small class="text-secondary">S/A</small>
                                 @endif
-                            </td>
-                            <td width="10px">
+                            </td> --}}
+                            {{-- <td width="10px">
                                 <a class="btn btn-primary btn-sm"
                                     href="{{ route('admin.impresoras.edit', $impresora) }}">Editar</a>
                             </td>
@@ -149,6 +143,54 @@
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                 </form>
+                            </td> --}}
+                            <td>
+                                <div class="btn-group">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                                            data-toggle="dropdown">
+                                            <i class="fas fa-bars"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                @if ($impresora->descripcion!=null)
+                                                    <p class="mx-3">{{ $impresora->descripcion }}</p>    
+                                                @else
+                                                    <p class="mx-3">Sin Descripción</p>
+                                                @endif
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{ route('admin.impresoras.edit', $impresora) }}">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+
+                                    <form class="formulario-eliminar"
+                                        action="{{ route('admin.impresoras.destroy', $impresora) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                @if ($impresora->estado == 1)
+                                    <small class="text-bold text-success">Activo</small>
+                                @else
+                                    @if ($impresora->estado == 0)
+                                        <small class="text-bold text-danger">Baja</small>
+                                    @else
+                                        @if ($cpimpresorau->estado == 2)
+                                            <small class="text-bold text-danger">En Reparación</small>
+                                        @else
+                                            <small class="text-bold text-danger">Hurtado</small>
+                                        @endif
+                                    @endif
+                                @endif
                             </td>
                         </tr>
                     @endforeach

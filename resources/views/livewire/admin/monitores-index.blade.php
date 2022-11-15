@@ -90,9 +90,9 @@
                             @endif
                         </th>
                         <th>N°Patrimonial</th>
+                        <th>Nombre_Puesto</th>
+                        <th class="text-bold text-primary text-center">ACCIONES</th>
                         <th>Estado</th>
-                        <th>Equipamiento_id</th>
-                        <th colspan="2" class="text-bold text-danger text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -111,13 +111,46 @@
                                 @endif
                             </td>
                             <td>
-                                @if ($monitor->estado == 1)
-                                    <small class="text-success">Activo</small>
+                                @if ($monitor->nombre_puesto != null)
+                                    {{ $monitor->nombre_puesto }}
                                 @else
-                                    <small class="text-secondary">Baja</small>
+                                    <p class="text-bold text-center text-slate-900">Sin Puesto Asignado</p>
                                 @endif
                             </td>
-                            <td>{{ $monitor->equipamiento_id }}</td>
+                            <td>
+                                <div class="btn-group ml-2">
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{ route('admin.monitores.edit', $monitor) }}">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+
+                                    <form class="formulario-eliminar"
+                                        action="{{ route('admin.monitores.destroy', $monitor) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                @if ($monitor->estado == 1)
+                                    <small class="text-bold text-success">Activo</small>
+                                @else
+                                    @if ($monitor->estado == 0)
+                                        <small class="text-bold text-danger">Baja</small>
+                                    @else
+                                        @if ($monitor->estado == 2)
+                                            <small class="text-bold text-danger">En Reparación</small>
+                                        @else
+                                            <small class="text-bold text-danger">Hurtado</small>
+                                        @endif
+                                    @endif
+                                @endif
+
+                            </td>
+                            {{-- <td>{{ $monitor->equipamiento_id }}</td>
                             <td width="10px">
                                 <a class="btn btn-primary btn-sm"
                                     href="{{ route('admin.monitores.edit', $monitor) }}">Editar</a>
@@ -129,7 +162,7 @@
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                 </form>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

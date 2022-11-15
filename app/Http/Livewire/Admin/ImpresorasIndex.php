@@ -27,12 +27,14 @@ class ImpresorasIndex extends Component
 
     public function render()
     {
-        $impresoras = Impresora::where('id', 'LIKE', "%" . $this->search . "%")
-            ->orWhere('nombre', 'LIKE', "%" . $this->search . "%")
-            ->orWhere('modelo', 'LIKE', "%" . $this->search . "%")
-            ->orWhere('serial', 'LIKE', "%" . $this->search . "%")
-            ->orderby($this->sort, $this->direction)
-            ->paginate($this->cant);
+        $impresoras = Impresora::leftjoin('puestos','impresoras.equipamiento_id','=','puestos.equipamiento_id')
+                                ->select('impresoras.*','puestos.nombre as nombre_puesto')
+                                ->where('impresoras.id', 'LIKE', "%" . $this->search . "%")
+                                ->orWhere('impresoras.nombre', 'LIKE', "%" . $this->search . "%")
+                                ->orWhere('modelo', 'LIKE', "%" . $this->search . "%")
+                                ->orWhere('serial', 'LIKE', "%" . $this->search . "%")
+                                ->orderby($this->sort, $this->direction)
+                                ->paginate($this->cant);
 
         return view('livewire.admin.impresoras-index', compact('impresoras'));
     }

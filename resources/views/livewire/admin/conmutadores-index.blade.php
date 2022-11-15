@@ -42,7 +42,7 @@
 
                         </th>
                         <th wire:click="order('numero')">
-                            Numero
+                            Num
                             @if ($sort == 'numero')
                                 @if ($direction == 'asc')
                                     <i class="fas fa-sort-alpha-up-alt mt-1 float-right"></i>
@@ -65,12 +65,12 @@
                                 <i class="fas fa-sort mt-1 float-right"></i>
                             @endif
                         </th>
-                        <th>Descripcion</th>
+                        {{-- <th>Descripcion</th> --}}
                         <th>Referencia</th>
                         <th>Rack</th>
                         <th>Sector</th>
                         <th>Fecha Limpieza</th>
-                        <th colspan="3" class="text-bold text-danger text-center">ACCIONES</th>
+                        <th class="text-bold text-primary text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,7 +79,7 @@
                             <td>{{ $conmutador->id }}</td>
                             <td>{{ $conmutador->numero }}</td>
                             <td>{{ $conmutador->marca }}</td>
-                            <td>
+                            {{-- <td>
                                 <div class="btn-group ml-3">
                                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
                                         data-toggle="dropdown">
@@ -91,7 +91,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </td>
+                            </td> --}}
                             <td>{{ $conmutador->referencia_lugar }}</td>
                             <td>
                                 @if ($conmutador->rack_id != null)
@@ -109,9 +109,45 @@
 
                             </td>
                             <td>{{ $conmutador->fecha_limpieza }}</td>
-                            <td width="10px">
+
+                            <td>
+                                <div class="btn-group ml-3">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle"
+                                            data-toggle="dropdown">
+                                            <i class="fas fa-bars"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <p class="mx-3">{{ $conmutador->descripcion }}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <a class="btn btn-success btn-sm"
+                                        href="{{route('admin.conmutadores.show', $conmutador)}}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{ route('admin.conmutadores.edit', $conmutador) }}">
+                                        <i class="fa fa-pen"></i>
+                                    </a>
+
+                                    <form class="formulario-eliminar"
+                                        action="{{ route('admin.conmutadores.destroy', $conmutador) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+
+                            {{-- <td width="10px">
                                 <a class="btn btn-success btn-sm" href="{{route('admin.conmutadores.show', $conmutador)}}">
-                                    {{-- <i class="fas fa-eye"></i>  --}}Detalle
+                                    Detalle
                                 </a>
                             </td>
                             <td width="10px">
@@ -125,7 +161,7 @@
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                 </form>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

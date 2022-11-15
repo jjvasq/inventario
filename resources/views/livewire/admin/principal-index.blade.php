@@ -66,13 +66,14 @@
                         </th>
                         <th>Referencia Lugar</th>
                         <th>Planta</th>
-                        <th>Conect</th>
+                        
                         <th>B.Patch</th>
                         <th>B.Switch</th>
                         <th>Switch</th>
-                        <th>Data</th>
-                        <th>Descripción</th>
-                        <th class="text-bold text-info text-center">Detalle</th>
+                        {{-- <th>Data</th>
+                        <th>Descripción</th> --}}
+                        <th class="text-bold text-info text-center">Info</th>
+                        <th>Conect</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,14 +115,7 @@
                                 @endif
                                 
                             </td>
-                            <td>
-                                @if ($puesto->conectada_rack == 1)
-                                    <div class="btn btn-group btn-sm btn-default ml-2"> <i class="fas fa-check" style="color: green"></i></div>
-                                @else
-                                    <div class="btn btn-group btn-sm btn-default ml-2"> <i class="fas fa-bolt" style="color: red"></i></div>
-                                    {{-- <small class="text-danger">No</small> --}}
-                                @endif
-                            </td>
+                            
                             <td style="text-align:center">{{ $puesto->boca_patch }}</td>
                             <td style="text-align:center">{{ $puesto->boca_switch }}</td>
                             <td style="text-align:center">
@@ -131,7 +125,7 @@
                                     <span class="badge bg-danger">No Conectado</span>
                                 @endif
                             </td>
-                            <td>
+                            {{-- <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-info dropdown-toggle" 
                                         data-toggle="dropdown">
@@ -140,8 +134,8 @@
                                     <ul class="dropdown-menu">
                                         @if ($puesto->conectada_rack)
                                             <li>
-                                                <p class="mx-3">Sw: {{ $puesto->numero_conmutador }}{{-- </p> --}}
-                                                {{-- <p class="mx-3"> --}}({{ $puesto->marca_conmutador }})</p>    
+                                                <p class="mx-3">Sw: {{ $puesto->numero_conmutador }}
+                                                ({{ $puesto->marca_conmutador }})</p>    
                                             </li>
                                             <li>
                                                 @if ($puesto->nombre_rack != null)
@@ -158,8 +152,8 @@
                                         
                                     </ul>
                                 </div>
-                            </td>
-                            <td>
+                            </td> --}}
+                            {{-- <td>
                                 <div class="btn-group ml-4">
                                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" 
                                         data-toggle="dropdown">
@@ -175,11 +169,72 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </td>
-                            <td width="10px">
+                            </td> --}}
+                            {{-- <td width="10px">
                                 <a class="btn btn-success btn-sm ml-2"
                                     href="{{ route('admin.inventario.show', $puesto->id) }}"><i class="fas fa-eye"></i></a>
+                            </td> --}}
+
+                            <td>
+                                <div class="btn-group">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-info dropdown-toggle" 
+                                            data-toggle="dropdown">
+                                            <i class="fas fa-globe"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            @if ($puesto->conectada_rack)
+                                                <li>
+                                                    <p class="mx-3">Sw: {{ $puesto->numero_conmutador }}{{-- </p> --}}
+                                                    {{-- <p class="mx-3"> --}}({{ $puesto->marca_conmutador }})</p>    
+                                                </li>
+                                                <li>
+                                                    @if ($puesto->nombre_rack != null)
+                                                        <p class="mx-3">Rack: {{ $puesto->nombre_rack }}</p>
+                                                    @else
+                                                        <p class="text-danger mx-3">El Switch no está en Rack (Mirar Detalle)</p>
+                                                    @endif
+                                                </li>
+                                            @else
+                                                <li>
+                                                    S/D
+                                                </li>
+                                            @endif
+                                            
+                                        </ul>
+                                    </div>
+
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" 
+                                            data-toggle="dropdown">
+                                            <i class="fas fa-info"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                @if ($puesto->descripcion != null)
+                                                    <p class="mx-3">{{ $puesto->descripcion }}</p>    
+                                                @else
+                                                    S/D
+                                                @endif
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <a class="btn btn-success btn-sm"
+                                        href="{{ route('admin.inventario.show', $puesto->id) }}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
                             </td>
+                            <td>
+                                @if ($puesto->conectada_rack == 1)
+                                    <div class="btn btn-group btn-sm btn-default ml-2"> <i class="fas fa-check" style="color: green"></i></div>
+                                @else
+                                    <div class="btn btn-group btn-sm btn-default ml-2"> <i class="fas fa-bolt" style="color: red"></i></div>
+                                    {{-- <small class="text-danger">No</small> --}}
+                                @endif
+                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>
