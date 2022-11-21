@@ -96,3 +96,30 @@
         {!! Form::select('equipamiento_id', $equipamientos, null, ['class' => 'form-control', 'placeholder' => 'Sin Asignar']) !!}
     </div>
 </div>
+
+<div class="row mb-3">
+    <div class="col">
+        <div class="image-wrapper">
+            @isset ($cpu->image)
+                <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($cpu->image->url)}}" alt="Imagen del CPU">
+            @else
+                <img class="img-fluid rounded-sm" id="picture" src="https://images.pexels.com/photos/6913135/pexels-photo-6913135.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen por defecto">
+                
+            @endisset
+        </div>
+        
+    </div>
+    <div class="col">
+        <div class="form-group">
+            {!! Form::label('file', 'Imagen que se mostrará del CPU') !!}
+            {!! Form::file('file', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
+            @error('file')
+                <small class="text-danger">{{$message}}</small>
+            @enderror
+        </div>
+        
+        <p>Tener en cuenta que se trata de una imágen ilustrativa.</p>
+        <p>La finalidad es la de poder tener una aproximación visual al Cpu al que hace referencia.</p>
+        <p>Si bien los datos son van a ser considerados válidos, esta imágen no va a ser utilizada para contrastar la veracidad de la información del Sistema.</p>
+    </div>
+</div>

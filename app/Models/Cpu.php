@@ -15,4 +15,9 @@ class Cpu extends Model
     public  function equipamiento(){
         return $this->belongsTo(Equipamiento::class);
     }
+
+    //Relación uno a uno polimórfica:
+    public function image(){
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

@@ -7,6 +7,7 @@ use App\Models\Cpu;
 use App\Models\Equipamiento;
 use App\Models\Puesto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CpuController extends Controller
 {
@@ -55,6 +56,15 @@ class CpuController extends Controller
         ]);
 
         $cpu = Cpu::create($request->all());
+
+        if($request->file('file')){
+            $url = Storage::put('cpus',$request->file('file'));
+
+            $cpu->image()->create([
+                'url' => $url
+            ]);
+        }
+
         return redirect()->route('admin.cpus.edit', $cpu)->with('info', 'El CPU se creó correctamente');
     }
 
@@ -106,6 +116,23 @@ class CpuController extends Controller
         ]);
 
         $cpu->update($request->all());
+
+        if($request->file('file')){
+            $url = Storage::put('cpus',$request->file('file'));
+
+            if($cpu->image){
+                Storage::delete($cpu->image->url);
+
+                $cpu->image()->update([
+                    'url' => $url,
+                ]);
+            }
+            else{
+                $cpu->image()->create([
+                    'url' => $url,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.cpus.index')->with('editar', 'ok');
     }
