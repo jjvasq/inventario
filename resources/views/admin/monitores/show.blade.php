@@ -88,7 +88,26 @@
                     </div>
                     <div id="collapseThree" class="collapse" data-parent="#accordion" style="">
                         <div class="card-body">
-                            Acá van las imágenes
+                            <div class="row">
+                                <div class="col">
+                                    <div class="image-wrapper">
+                                        @isset ($monitor->image)
+                                            <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($monitor->image->url)}}" alt="Imagen del Monitor">
+                                        @else
+                                            <img class="img-fluid rounded-sm" id="picture" src="https://images.pexels.com/photos/6913135/pexels-photo-6913135.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen por defecto">
+                                        @endisset
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    @isset ($monitor->image)
+                                        <p>Imágen correspondiente al Monitor del Equipo.</p>
+                                        <p>Tener en cuenta que los datos de la imagen son subjetivos, los que van a considerarse son los ingresados en la BD.</p>
+                                    @else
+                                        <p>Tener en cuenta que se trata de una imágen ilustrativa.</p>
+                                        <p class="text-bold">En este caso se trata de una imagen default</p>
+                                    @endisset
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -98,6 +117,18 @@
 @stop
 
 @section('css')
+    <style>
+        .image-wrapper{
+            position: relative;
+            padding-bottom: 56.25%;
+        }
+        .image-wrapper img{
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 

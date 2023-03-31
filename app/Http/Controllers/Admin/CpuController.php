@@ -58,7 +58,7 @@ class CpuController extends Controller
         $cpu = Cpu::create($request->all());
 
         if($request->file('file')){
-            $url = Storage::put('cpus',$request->file('file'));
+            $url = Storage::put('img',$request->file('file'));
 
             $cpu->image()->create([
                 'url' => $url
@@ -118,7 +118,7 @@ class CpuController extends Controller
         $cpu->update($request->all());
 
         if($request->file('file')){
-            $url = Storage::put('cpus',$request->file('file'));
+            $url = Storage::put('img',$request->file('file'));
 
             if($cpu->image){
                 Storage::delete($cpu->image->url);
@@ -145,6 +145,9 @@ class CpuController extends Controller
      */
     public function destroy(Cpu $cpu)
     {
+        if($cpu->image){
+            Storage::delete($cpu->image->url);
+        }
         $cpu->delete();
         return redirect()->route('admin.cpus.index')->with('eliminar', 'ok');
     }

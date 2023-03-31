@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Equipamiento;
+use App\Models\ImagenMonitor;
 use App\Models\Monitor;
 use App\Models\Puesto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MonitorController extends Controller
 {
@@ -56,6 +58,19 @@ class MonitorController extends Controller
         ]);
 
         $monitor = Monitor::create($request->all());
+
+        /* if($request->file('file')){
+            $url = Storage::put('monitor',$request->file('file'));
+
+            $monitor->image()->create([
+                'url' => $url
+            ]);
+            $imagen = ImagenMonitor::create([
+                'url' => $url,
+                'monitor_id' => $monitor->id,
+            ]);
+        } */
+
         return redirect()->route('admin.monitores.edit', $monitor)->with('info', 'El Monitor se creó correctamente');
     }
 
@@ -109,6 +124,23 @@ class MonitorController extends Controller
 
         $monitore->update($request->all());
 
+        /* if($request->file('file')){
+            $url = Storage::put('img',$request->file('file'));
+
+            if($monitore->image){
+                Storage::delete($monitore->image->url);
+
+                $monitore->image()->update([
+                    'url' => $url,
+                ]);
+            }
+            else{
+                $monitore->image()->create([
+                    'url' => $url,
+                ]);
+            }
+        } */
+
         return redirect()->route('admin.monitores.index')->with('editar', 'ok');
     }
 
@@ -120,7 +152,16 @@ class MonitorController extends Controller
      */
     public function destroy(Monitor $monitore)
     {
+        //Acá hay que recorrer las imágenes creo. Hay que ver el cascade.
+        /* if($monitore->image){
+            Storage::delete($monitore->image->url);
+        } */
         $monitore->delete();
         return redirect()->route('admin.monitores.index')->with('eliminar', 'ok');
+    }
+
+    public function imagenes(Monitor $monitor){
+        $imagenes = ImagenMonitor::where('monitor_id','=',$monitor->id)->get();
+        return view('admin.monitores.imagenes', compact('monitor','imagenes'));
     }
 }

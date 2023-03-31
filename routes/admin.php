@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ConmutadorController;
 use App\Http\Controllers\Admin\CpuController;
 use App\Http\Controllers\Admin\EquipamientoController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ImagenMonitorController;
 use App\Http\Controllers\Admin\ImpresoraController;
 use App\Http\Controllers\Admin\InventarioController;
 use App\Http\Controllers\Admin\IpController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\Admin\RackController;
 use App\Http\Controllers\Admin\ScannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SectorController;
-
+/* use App\Models\ImagenMonitor; */
 
 //Como tienen el prefijo Admin en "RouteServiceProvider", no necesita nada en el get
 Route::get('', [HomeController::class, 'index'])->name('admin.home');
@@ -27,6 +28,11 @@ Route::resource('ips', IpController::class)->names('admin.ips');
 Route::resource('conmutadores', ConmutadorController::class)->names('admin.conmutadores');
 
 Route::resource('monitores', MonitorController::class)->names('admin.monitores');
+Route::get('monitores/imagenes/{monitor}', [MonitorController::class, 'imagenes'])->name('admin.monitores.imagenes');
+
+Route::resource('imagenMonitores', ImagenMonitorController::class)->names('admin.imagenMonitores');
+Route::post('imagenMonitores/store2/{id}', [ImagenMonitorController::class, 'store2'])->name('admin.imagenMonitores.store2');
+Route::get('imagenMonitores/create2/{id}', [ImagenMonitorController::class, 'create2'])->name('admin.imagenMonitores.create2');
 
 Route::resource('cpus', CpuController::class)->names('admin.cpus');
 

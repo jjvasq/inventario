@@ -17,4 +17,12 @@ class Monitor extends Model
     public function equipamiento(){
         return $this->belongsTo(Equipamiento::class);
     }
+
+    public function imagenes(){
+        return $this->hasMany(ImagenMonitor::class);
+    }
+
+    /* public function image(){
+        return $this->morphOne(Image::class, 'imageable');
+    } */
 }

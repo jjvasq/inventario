@@ -127,6 +127,10 @@
                                         href="{{ route('admin.monitores.edit', $monitor) }}">
                                         <i class="fas fa-pen"></i>
                                     </a>
+                                    <a class="btn btn-info btn-sm"
+                                        href="{{ route('admin.monitores.imagenes', $monitor) }}">
+                                        <i class="fas fa-image"></i>
+                                    </a>
 
                                     <form class="formulario-eliminar"
                                         action="{{ route('admin.monitores.destroy', $monitor) }}" method="POST">

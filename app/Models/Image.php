@@ -14,4 +14,8 @@ class Image extends Model
     public function imageable(){
         return $this->morphTo(); //Acá hay que ver el tema de más de una..
     }
+
+    public function imageable2(){
+        return $this->morphTo(); //Acá hay que ver el tema de más de una..
+    }
 }
