@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cpu;
 use App\Models\Equipamiento;
+use App\Models\ImagenCpu;
 use App\Models\Puesto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -150,5 +151,11 @@ class CpuController extends Controller
         }
         $cpu->delete();
         return redirect()->route('admin.cpus.index')->with('eliminar', 'ok');
+    }
+
+    //Método para mostrar las imágenes del CPU:
+    public function imagenes(Cpu $cpu){
+        $imagenes = ImagenCpu::where('cpu_id','=',$cpu->id)->get();
+        return view('admin.cpus.imagenes', compact('cpu','imagenes'));
     }
 }

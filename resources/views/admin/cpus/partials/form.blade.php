@@ -97,7 +97,7 @@
     </div>
 </div>
 
-<div class="row mb-3">
+{{-- <div class="row mb-3">
     <div class="col">
         <div class="image-wrapper">
             @isset ($cpu->image)
@@ -122,4 +122,4 @@
         <p>La finalidad es la de poder tener una aproximación visual al Cpu al que hace referencia.</p>
         <p>Si bien los datos son van a ser considerados válidos, esta imágen no va a ser utilizada para contrastar la veracidad de la información del Sistema.</p>
     </div>
-</div>
+</div> --}}

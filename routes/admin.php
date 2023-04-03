@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ConmutadorController;
 use App\Http\Controllers\Admin\CpuController;
 use App\Http\Controllers\Admin\EquipamientoController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ImagenCpuController;
 use App\Http\Controllers\Admin\ImagenMonitorController;
 use App\Http\Controllers\Admin\ImpresoraController;
 use App\Http\Controllers\Admin\InventarioController;
@@ -14,6 +15,8 @@ use App\Http\Controllers\Admin\RackController;
 use App\Http\Controllers\Admin\ScannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SectorController;
+use App\Models\ImagenCpu;
+
 /* use App\Models\ImagenMonitor; */
 
 //Como tienen el prefijo Admin en "RouteServiceProvider", no necesita nada en el get
@@ -35,6 +38,11 @@ Route::post('imagenMonitores/store2/{id}', [ImagenMonitorController::class, 'sto
 Route::get('imagenMonitores/create2/{id}', [ImagenMonitorController::class, 'create2'])->name('admin.imagenMonitores.create2');
 
 Route::resource('cpus', CpuController::class)->names('admin.cpus');
+//Imagenes de CPU:
+Route::get('cpus/imagenes/{cpu}', [CpuController::class, 'imagenes'])->name('admin.cpus.imagenes');
+Route::get('imagenCpus/create/{id}', [ImagenCpuController::class, 'create'])->name('admin.imagenCpus.create');
+Route::post('imagenCpus/store/{id}', [ImagenCpuController::class, 'store'])->name('admin.imagenCpus.store');
+Route::delete('imagnCpus/destroy/{imagenCpu}', [ImagenCpuController::class, 'destroy'])->name('admin.imagenCpus.destroy');
 
 Route::resource('impresoras', ImpresoraController::class)->names('admin.impresoras');
 

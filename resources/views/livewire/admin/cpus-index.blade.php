@@ -167,6 +167,11 @@
                                         <i class="fas fa-pen"></i></a>
                                     {{-- </button> --}}
                                     
+                                        <a class="btn btn-info btn-sm"
+                                            href="{{ route('admin.cpus.imagenes', $cpu) }}">
+                                            <i class="fas fa-image"></i>
+                                        </a>
+
                                         <form class="formulario-eliminar" action="{{ route('admin.cpus.destroy', $cpu) }}"
                                             method="POST">
                                             @csrf

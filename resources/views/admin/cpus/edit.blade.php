@@ -43,7 +43,8 @@
 
 @section('js')
 
-    <script>
+//No se utiliza porque estamos haciendo la carga de imagenes desde afuera.
+   {{--  <script>
         //Cambiar imagen
         document.getElementById("file").addEventListener('change', cambiarImagen);
 
@@ -57,7 +58,7 @@
 
             reader.readAsDataURL(file);
         }
-    </script>
+    </script> --}}
 
     <script> console.log('Hi!'); </script>
 @stop

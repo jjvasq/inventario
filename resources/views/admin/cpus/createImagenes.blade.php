@@ -1,18 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Monitor Imágenes')
+@section('title', 'CPU Imágenes')
 
 @section('content_header')
-    <a class="btn btn-info float-right" href="{{ route('admin.monitores.index') }}"><i class="fas fa-undo"></i> Volver al Índice</a>
-    <h3>Agregar Imagenes a Monitor con id: {{$id}}</h3>
+    <a class="btn btn-info float-right" href="{{ route('admin.cpus.index') }}"><i class="fas fa-undo"></i> Volver al Índice</a>
+    <h3>Agregar Imagenes a Cpu con id: {{$id}}</h3>
 @stop
 
 @section('content')
-    {{-- <div class="card">
-        <div class="card-body">
-            <h1>Estoy en create imagenes del Monitor id:{{$id}}</h1>
-        </div>
-    </div> --}}
     <div class="card">
         <div class="card-header">
             <h3>Subir Imágenes</h3>
@@ -25,7 +20,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <form action="{{route('admin.imagenMonitores.store2', $id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('admin.imagenCpus.store', $id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <input type="file" name="file" id="file" accept="image/*">
@@ -74,5 +69,6 @@
             reader.readAsDataURL(file);
         }
     </script>
+
     <script> console.log('Hi!'); </script>
 @stop

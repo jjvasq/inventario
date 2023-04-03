@@ -38,7 +38,7 @@
 
 @section('js')
 
-    <script>
+    {{-- <script>
         //Cambiar imagen
         document.getElementById("file").addEventListener('change', cambiarImagen);
 
@@ -52,7 +52,7 @@
 
             reader.readAsDataURL(file);
         }
-    </script>
+    </script> --}}
 
     <script> console.log('Hi!'); </script>
 @stop
