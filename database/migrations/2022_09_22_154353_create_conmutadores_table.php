@@ -17,6 +17,7 @@ class CreateConmutadoresTable extends Migration
             $table->id();
 
             $table->tinyInteger('numero');
+            $table->string('serial', 50)->nullable();//Recordar agregar en las vistas..
             $table->string('marca', 50);
             $table->string('descripcion', 255)->nullable();
             $table->string('referencia_lugar', 255);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Conexion;
 use App\Models\Cpu;
 use App\Models\Equipamiento;
+use App\Models\ImagenPuesto;
 use App\Models\Impresora;
 use App\Models\Ip;
 use App\Models\Monitor;
@@ -435,5 +436,11 @@ class PuestoController extends Controller
             'ip_id' => null,
         ]);
         return redirect()->route('admin.puestos.index')->with('desconectar', 'ok');
+    }
+
+    //Función para mostrar las imágenes del Puesto:
+    public function imagenes(Puesto $puesto){
+        $imagenes = ImagenPuesto::where('puesto_id','=',$puesto->id)->get();
+        return view('admin.puestos.imagenes', compact('puesto','imagenes'));
     }
 }

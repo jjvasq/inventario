@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Equipamiento;
+use App\Models\ImagenScanner;
 use App\Models\Puesto;
 use App\Models\Scanner;
 use Illuminate\Http\Request;
@@ -119,5 +120,11 @@ class ScannerController extends Controller
     {
         $scanner->delete();
         return redirect()->route('admin.scanners.index')->with('eliminar', 'ok');
+    }
+
+     //Función para mostrar las imágenes de la Impresora:
+     public function imagenes(Scanner $scanner){
+        $imagenes = ImagenScanner::where('scanner_id','=',$scanner->id)->get();
+        return view('admin.scanners.imagenes', compact('scanner','imagenes'));
     }
 }

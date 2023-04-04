@@ -22,4 +22,9 @@ class Scanner extends Model
     public function equipamiento(){
         return $this->belongsTo(Equipamiento::class);
     }
+
+    public function imagenes()
+    {
+        return $this->hasMany(ImagenScanner::class);
+    }
 }

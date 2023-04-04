@@ -162,6 +162,11 @@
                                         <i class="fas fa-pen"></i>
                                     </a>
 
+                                    <a class="btn btn-info btn-sm"
+                                        href="{{ route('admin.scanners.imagenes', $scanner) }}">
+                                        <i class="fas fa-image"></i>
+                                    </a>
+
                                     <form class="formulario-eliminar"
                                         action="{{ route('admin.scanners.destroy', $scanner) }}" method="POST">
                                         @csrf

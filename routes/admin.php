@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ImagenCpuController;
 use App\Http\Controllers\Admin\ImagenImpresoraController;
 use App\Http\Controllers\Admin\ImagenMonitorController;
+use App\Http\Controllers\Admin\ImagenPuestoController;
+use App\Http\Controllers\Admin\ImagenScannerController;
 use App\Http\Controllers\Admin\ImpresoraController;
 use App\Http\Controllers\Admin\InventarioController;
 use App\Http\Controllers\Admin\IpController;
@@ -54,10 +56,22 @@ Route::delete('imagenImpresoras/destroy/{imagenImpresora}', [ImagenImpresoraCont
 
 
 Route::resource('scanners', ScannerController::class)->names('admin.scanners');
+//Imagenes de Scanner:
+Route::get('scanners/imagenes/{scanner}', [ScannerController::class, 'imagenes'])->name('admin.scanners.imagenes');
+Route::get('imagenScanners/create/{scanner}', [ImagenScannerController::class, 'create'])->name('admin.imagenScanners.create');
+Route::post('imagenScanners/store/{scanner}', [ImagenScannerController::class, 'store'])->name('admin.imagenScanners.store');
+Route::delete('imagenScanners/destroy/{imagenScanner}', [ImagenScannerController::class, 'destroy'])->name('admin.imagenScanners.destroy');
+
 
 Route::resource('equipamientos', EquipamientoController::class)->names('admin.equipamientos');
 
 Route::resource('puestos', PuestoController::class)->names('admin.puestos');
+//Imagenes de Puesto:
+Route::get('puestos/imagenes/{puesto}', [PuestoController::class, 'imagenes'])->name('admin.puestos.imagenes');
+Route::get('imagenPuestos/create/{puesto}', [ImagenPuestoController::class, 'create'])->name('admin.imagenPuestos.create');
+Route::post('imagenPuestos/store/{puesto}', [ImagenPuestoController::class, 'store'])->name('admin.imagenPuestos.store');
+Route::delete('imagenPuestos/destroy/{imagenPuesto}', [ImagenPuestoController::class, 'destroy'])->name('admin.imagenPuestos.destroy');
+
 
 Route::get('puestos/desconectar/{conexion}', [PuestoController::class, 'desconectar'])->name('admin.puestos.desconectar');
 
