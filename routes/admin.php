@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ConmutadorController;
 use App\Http\Controllers\Admin\CpuController;
 use App\Http\Controllers\Admin\EquipamientoController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ImagenConmutadorController;
 use App\Http\Controllers\Admin\ImagenCpuController;
 use App\Http\Controllers\Admin\ImagenImpresoraController;
 use App\Http\Controllers\Admin\ImagenMonitorController;
@@ -32,6 +33,12 @@ Route::resource('racks', RackController::class)->names('admin.racks');
 Route::resource('ips', IpController::class)->names('admin.ips');
 
 Route::resource('conmutadores', ConmutadorController::class)->names('admin.conmutadores');
+//Imagenes de CPU:
+Route::get('conmutadores/imagenes/{conmutador}', [ConmutadorController::class, 'imagenes'])->name('admin.conmutadores.imagenes');
+Route::get('imagenConmutadores/create/{id}', [ImagenConmutadorController::class, 'create'])->name('admin.imagenConmutadores.create');
+Route::post('imagenConmutadores/store/{id}', [ImagenConmutadorController::class, 'store'])->name('admin.imagenConmutadores.store');
+Route::delete('imagenConmutadores/destroy/{imagenConmutador}', [ImagenConmutadorController::class, 'destroy'])->name('admin.imagenConmutadores.destroy');
+
 
 Route::resource('monitores', MonitorController::class)->names('admin.monitores');
 Route::get('monitores/imagenes/{monitor}', [MonitorController::class, 'imagenes'])->name('admin.monitores.imagenes');

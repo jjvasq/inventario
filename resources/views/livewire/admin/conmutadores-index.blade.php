@@ -134,6 +134,11 @@
                                         <i class="fa fa-pen"></i>
                                     </a>
 
+                                    <a class="btn btn-info btn-sm"
+                                        href="{{ route('admin.conmutadores.imagenes', $conmutador) }}">
+                                        <i class="fas fa-image"></i>
+                                    </a>
+
                                     <form class="formulario-eliminar"
                                         action="{{ route('admin.conmutadores.destroy', $conmutador) }}" method="POST">
                                         @csrf

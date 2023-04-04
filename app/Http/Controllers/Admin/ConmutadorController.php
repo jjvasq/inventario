@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Conexion;
 use App\Models\Conmutador;
+use App\Models\ImagenConmutador;
 use App\Models\Rack;
 use App\Models\Sector;
 use Illuminate\Http\Request;
@@ -116,5 +117,11 @@ class ConmutadorController extends Controller
     {
         $conmutadore->delete();
         return redirect()->route('admin.conmutadores.index')->with('eliminar', 'ok');
+    }
+
+    //Función para mostrar las imágenes de la Impresora:
+    public function imagenes(Conmutador $conmutador){
+        $imagenes = ImagenConmutador::where('conmutador_id','=',$conmutador->id)->get();
+        return view('admin.conmutadores.imagenes', compact('conmutador','imagenes'));
     }
 }
