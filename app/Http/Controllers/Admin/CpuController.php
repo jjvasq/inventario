@@ -153,7 +153,7 @@ class CpuController extends Controller
         return redirect()->route('admin.cpus.index')->with('eliminar', 'ok');
     }
 
-    //Método para mostrar las imágenes del CPU:
+    //Función para mostrar las imágenes del CPU:
     public function imagenes(Cpu $cpu){
         $imagenes = ImagenCpu::where('cpu_id','=',$cpu->id)->get();
         return view('admin.cpus.imagenes', compact('cpu','imagenes'));

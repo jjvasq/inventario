@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Equipamiento;
+use App\Models\ImagenImpresora;
 use App\Models\Impresora;
 use App\Models\Puesto;
 use Illuminate\Http\Request;
@@ -120,5 +121,11 @@ class ImpresoraController extends Controller
     {
         $impresora->delete();
         return redirect()->route('admin.impresoras.index')->with('eliminar', 'ok');
+    }
+
+    //Función para mostrar las imágenes de la Impresora:
+    public function imagenes(Impresora $impresora){
+        $imagenes = ImagenImpresora::where('impresora_id','=',$impresora->id)->get();
+        return view('admin.impresoras.imagenes', compact('impresora','imagenes'));
     }
 }

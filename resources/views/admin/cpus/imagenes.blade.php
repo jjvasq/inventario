@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="row">
                 @foreach ($imagenes as $imagen)
-                    <div class="col-6">
+                    <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="image-wrapper">

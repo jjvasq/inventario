@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CpuController;
 use App\Http\Controllers\Admin\EquipamientoController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ImagenCpuController;
+use App\Http\Controllers\Admin\ImagenImpresoraController;
 use App\Http\Controllers\Admin\ImagenMonitorController;
 use App\Http\Controllers\Admin\ImpresoraController;
 use App\Http\Controllers\Admin\InventarioController;
@@ -42,9 +43,15 @@ Route::resource('cpus', CpuController::class)->names('admin.cpus');
 Route::get('cpus/imagenes/{cpu}', [CpuController::class, 'imagenes'])->name('admin.cpus.imagenes');
 Route::get('imagenCpus/create/{id}', [ImagenCpuController::class, 'create'])->name('admin.imagenCpus.create');
 Route::post('imagenCpus/store/{id}', [ImagenCpuController::class, 'store'])->name('admin.imagenCpus.store');
-Route::delete('imagnCpus/destroy/{imagenCpu}', [ImagenCpuController::class, 'destroy'])->name('admin.imagenCpus.destroy');
+Route::delete('imagenCpus/destroy/{imagenCpu}', [ImagenCpuController::class, 'destroy'])->name('admin.imagenCpus.destroy');
 
 Route::resource('impresoras', ImpresoraController::class)->names('admin.impresoras');
+//Imagenes de Impresora:
+Route::get('impresoras/imagenes/{impresora}', [ImpresoraController::class, 'imagenes'])->name('admin.impresoras.imagenes');
+Route::get('imagenImpresoras/create/{impresora}', [ImagenImpresoraController::class, 'create'])->name('admin.imagenImpresoras.create');
+Route::post('imagenImpresoras/store/{impresora}', [ImagenImpresoraController::class, 'store'])->name('admin.imagenImpresoras.store');
+Route::delete('imagenImpresoras/destroy/{imagenImpresora}', [ImagenImpresoraController::class, 'destroy'])->name('admin.imagenImpresoras.destroy');
+
 
 Route::resource('scanners', ScannerController::class)->names('admin.scanners');
 

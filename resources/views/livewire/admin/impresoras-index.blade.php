@@ -171,6 +171,11 @@
                                         <i class="fas fa-pen"></i>
                                     </a>
 
+                                    <a class="btn btn-info btn-sm"
+                                        href="{{ route('admin.impresoras.imagenes', $impresora) }}">
+                                        <i class="fas fa-image"></i>
+                                    </a>
+
                                     <form class="formulario-eliminar"
                                         action="{{ route('admin.impresoras.destroy', $impresora) }}" method="POST">
                                         @csrf

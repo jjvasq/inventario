@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', 'Monitor Imágenes')
+@section('title', 'Impresora Imágenes')
 
 @section('content_header')
-    <a class="btn btn-info float-right" href="{{ route('admin.monitores.index') }}"><i class="fas fa-undo"></i> Volver al Índice</a>
+    <a class="btn btn-info float-right" href="{{ route('admin.impresoras.index') }}"><i class="fas fa-undo"></i> Volver al Índice</a>
     <a class="float-right btn btn-success mr-4"
-        href="{{ route('admin.imagenMonitores.create2', $monitor->id) }}">
+        href="{{ route('admin.imagenImpresoras.create', $impresora) }}">
         <i class="fas fa-plus"></i> Agregar Imágenes
     </a>
-    <h3>Imagenes de Monitor:{{--  {{$monitor->id}} --}}</h3>
+    <h3>Imagenes de Impresora: {{$impresora->slug}}</h3>
 @stop
 
 @section('content')
@@ -22,18 +22,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="image-wrapper">
-                                    <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen del Monitor">
-                                    {{-- <img class="img-fluid rounded-sm" id="picture" src="https://images.pexels.com/photos/6913135/pexels-photo-6913135.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen por defecto"> --}}
-                                    {{-- @isset ($monitor->image)
-                                        <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($monitor->image->url)}}" alt="Imagen del Monitor">
-                                    @else
-                                        <img class="img-fluid rounded-sm" id="picture" src="https://images.pexels.com/photos/6913135/pexels-photo-6913135.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen por defecto">
-                                    @endisset --}}
+                                    <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen de Impresora">
                                 </div>
                             </div>
                             <div class="card-footer">
                                 <form class="formulario-eliminar"
-                                        action="{{ route('admin.imagenMonitores.destroy', $imagen) }}" method="POST">
+                                        action="{{ route('admin.imagenImpresoras.destroy', $imagen) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger btn-sm">
@@ -49,7 +43,7 @@
            
         @else
             <div class="card-body">
-                <h5>No hay imágenes del Monitor</h5>
+                <h5>No hay imágenes de la Impresora</h5>
             </div>
         @endif
         

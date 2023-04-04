@@ -22,4 +22,9 @@ class Impresora extends Model
     public function equipamiento(){
         return $this->belongsTo(Equipamiento::class);
     }
+
+    //Relación uno a muchos con imagenes_impresora
+    public function imagenes(){
+        return $this->hasMany(ImagenImpresora::class);
+    }
 }
