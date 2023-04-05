@@ -20,4 +20,9 @@ class Rack extends Model
     public function conmutadores(){
         return $this->hasMany(Conmutador::class);
     }
+
+    //Relación uno a muchos con imagenes_impresora
+    public function imagenes(){
+        return $this->hasMany(ImagenRack::class);
+    }
 }

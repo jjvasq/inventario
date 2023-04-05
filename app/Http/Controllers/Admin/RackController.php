@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Conmutador;
+use App\Models\ImagenRack;
 use App\Models\Rack;
 use Illuminate\Http\Request;
 
@@ -103,5 +104,11 @@ class RackController extends Controller
         $rack->delete();
 
         return redirect()->route('admin.racks.index')->with('eliminar', 'ok');
+    }
+
+    //Función para mostrar las imágenes del Rack:
+    public function imagenes(Rack $rack){
+        $imagenes = ImagenRack::where('rack_id','=',$rack->id)->get();
+        return view('admin.racks.imagenes', compact('rack','imagenes'));
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ImagenCpuController;
 use App\Http\Controllers\Admin\ImagenImpresoraController;
 use App\Http\Controllers\Admin\ImagenMonitorController;
 use App\Http\Controllers\Admin\ImagenPuestoController;
+use App\Http\Controllers\Admin\ImagenRackController;
 use App\Http\Controllers\Admin\ImagenScannerController;
 use App\Http\Controllers\Admin\ImpresoraController;
 use App\Http\Controllers\Admin\InventarioController;
@@ -29,6 +30,11 @@ Route::get('', [HomeController::class, 'index'])->name('admin.home');
 Route::resource('sectores', SectorController::class)->names('admin.sectores');
 
 Route::resource('racks', RackController::class)->names('admin.racks');
+//Imagenes de Rack:
+Route::get('racks/imagenes/{rack}', [RackController::class, 'imagenes'])->name('admin.racks.imagenes');
+Route::get('imagenRacks/create/{rack}', [ImagenRackController::class, 'create'])->name('admin.imagenRacks.create');
+Route::post('imagenRacks/store/{rack}', [ImagenRackController::class, 'store'])->name('admin.imagenRacks.store');
+Route::delete('imagenRacks/destroy/{imagenRack}', [ImagenRackController::class, 'destroy'])->name('admin.imagenRacks.destroy');
 
 Route::resource('ips', IpController::class)->names('admin.ips');
 

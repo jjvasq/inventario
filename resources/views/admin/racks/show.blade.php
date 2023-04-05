@@ -17,6 +17,8 @@
                         role="tab" aria-controls="rack-desc" aria-selected="true">Detalle-Rack</a>
                     <a class="nav-item nav-link" id="switch-desc-tab" data-toggle="tab" href="#switch-desc"
                         role="tab" aria-controls="switch-desc" aria-selected="false">Switchs</a>
+                    <a class="nav-item nav-link" id="imagenes-desc-tab" data-toggle="tab" href="#imagenes-desc"
+                        role="tab" aria-controls="imagenes-desc" aria-selected="false">Imágenes</a>
                 </div>
             </nav>
             <div class="tab-content p-3" id="nav-tabContent">
@@ -100,6 +102,25 @@
                         </div>
                     @endif
 
+                </div>
+                <div class="tab-pane fade" id="imagenes-desc" role="tabpanel" aria-labelledby="imagenes-desc-tab">
+                    <div class="row">
+                        @if ($rack->imagenes->count())
+                            @foreach ($rack->imagenes as $imagen)
+                            <div class="row">
+                                <div class="col-12 mt-2">
+                                    <div class="callout callout-info mr-3">
+                                        <div class="image-wrapper">
+                                            <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen del Rack">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach    
+                        @else
+                            <p>No hay imágenes Asociadas al Rack.</p>
+                        @endif
+                    </div>
                 </div>
                 {{-- <div class="tab-pane fade" id="conexion-desc" role="tabpanel" aria-labelledby="conexion-desc-tab">
                     <div class="card-group">
