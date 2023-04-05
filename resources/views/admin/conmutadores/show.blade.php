@@ -16,7 +16,9 @@
                     <a class="nav-item nav-link active" id="switch-desc-tab" data-toggle="tab" href="#switch-desc"
                         role="tab" aria-controls="switch-desc" aria-selected="true">Detalle-Switch</a>
                     <a class="nav-item nav-link" id="conexiones-desc-tab" data-toggle="tab" href="#conexiones-desc"
-                        role="tab" aria-controls="conexiones-desc" aria-selected="false">Conexiones</a>
+                    role="tab" aria-controls="conexiones-desc" aria-selected="false">Conexiones</a>
+                    <a class="nav-item nav-link" id="imagenes-desc-tab" data-toggle="tab" href="#imagenes-desc"
+                        role="tab" aria-controls="imagenes-desc" aria-selected="false">Imágenes</a>
                 </div>
             </nav>
             <div class="tab-content p-3" id="nav-tabContent">
@@ -84,7 +86,26 @@
                         </div>
                     @endif
 
-                </div>                
+                </div>
+                <div class="tab-pane fade" id="imagenes-desc" role="tabpanel" aria-labelledby="imagenes-desc-tab">
+                    <div class="row">
+                        @if ($conmutador->imagenes->count())
+                            @foreach ($conmutador->imagenes as $imagen)
+                            <div class="row">
+                                <div class="col-12 mt-2">
+                                    <div class="callout callout-info mr-3">
+                                        <div class="image-wrapper">
+                                            <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen del Switch">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach    
+                        @else
+                            <p>No hay imágenes Asociadas al Switch.</p>
+                        @endif
+                    </div>
+                </div>               
             </div>
         </div>
     </div>

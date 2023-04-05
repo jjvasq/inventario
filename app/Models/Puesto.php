@@ -30,4 +30,8 @@ class Puesto extends Model
     public function equipamiento(){
         return $this->belongsTo(Equipamiento::class);
     }
+
+    public function imagenes(){
+        return $this->hasMany(ImagenPuesto::class);
+    }
 }

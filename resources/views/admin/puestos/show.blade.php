@@ -21,6 +21,8 @@
                             role="tab" aria-controls="conexion-desc" aria-selected="false">Conexión</a>
                         <a class="nav-item nav-link" id="equipamiento-desc-tab" data-toggle="tab" href="#equipamiento-desc"
                             role="tab" aria-controls="equipamiento-desc" aria-selected="false">Equipamiento</a>
+                        <a class="nav-item nav-link" id="imagenes-desc-tab" data-toggle="tab" href="#imagenes-desc"
+                            role="tab" aria-controls="imagenes-desc" aria-selected="false">Imágenes</a>
                     </div>
                 </nav>
                 <div class="tab-content p-3" id="nav-tabContent">
@@ -389,6 +391,31 @@
                             @endif
                         @endif
                     </div>
+                    <div class="tab-pane fade" id="imagenes-desc" role="tabpanel" aria-labelledby="imagenes-desc-tab">
+                        <div class="row">
+                            @if ($puesto->imagenes->count())
+                                @foreach ($puesto->imagenes as $imagen)
+                                <div class="row">
+                                    <div class="col-12 mt-2">
+                                        <div class="callout callout-info mr-3">
+                                            <div class="image-wrapper">
+                                                <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen del Puesto de Trabajo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach    
+                            @else
+                                <p>No hay imágenes Asociadas al Puesto de Trabajo.</p>
+                            @endif
+                        </div>
+
+                        {{-- <div class="callout callout-info">
+                            <h5>Descripción:</h5>
+                            <p>{{$puesto->equipamiento->descripcion}}</p>
+                            <p>Fecha Actualización: {{$puesto->equipamiento->fecha_actualizacion}}</p>
+                        </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -396,6 +423,18 @@
 @stop
 
 @section('css')
+    {{-- <style>
+        .image-wrapper{
+            position: relative;
+            padding-bottom: 56.25%;
+        }
+        .image-wrapper img{
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style> --}}
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 

@@ -112,9 +112,22 @@
                     </div>
                     <div id="collapseThree" class="collapse" data-parent="#accordion" style="">
                         <div class="card-body">
-                            Acá van las imágenes
+                            <div class="row">
+                                @if ($scanner->imagenes->count())
+                                    @foreach ($scanner->imagenes as $imagen)
+                                        <div class="col-12 col-md-6 my-2">
+                                            <div class="image-wrapper">
+                                                <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen del CPU">
+                                            </div>
+                                        </div>
+                                    @endforeach    
+                                @else
+                                    <p>No hay imágenes Asociadas al Scanner.</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

@@ -104,7 +104,19 @@
                     </div>
                     <div id="collapseThree" class="collapse" data-parent="#accordion" style="">
                         <div class="card-body">
-                            Acá van las imágenes
+                            <div class="row">
+                                @if ($impresora->imagenes->count())
+                                    @foreach ($impresora->imagenes as $imagen)
+                                        <div class="col-12 col-md-6 my-2">
+                                            <div class="image-wrapper">
+                                                <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen del CPU">
+                                            </div>
+                                        </div>
+                                    @endforeach    
+                                @else
+                                    <p>No hay imágenes Asociadas a la Impresora.</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>

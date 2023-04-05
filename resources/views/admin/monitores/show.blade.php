@@ -89,27 +89,21 @@
                     <div id="collapseThree" class="collapse" data-parent="#accordion" style="">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col">
-                                    <div class="image-wrapper">
-                                        @isset ($monitor->image)
-                                            <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($monitor->image->url)}}" alt="Imagen del Monitor">
-                                        @else
-                                            <img class="img-fluid rounded-sm" id="picture" src="https://images.pexels.com/photos/6913135/pexels-photo-6913135.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Imagen por defecto">
-                                        @endisset
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    @isset ($monitor->image)
-                                        <p>Imágen correspondiente al Monitor del Equipo.</p>
-                                        <p>Tener en cuenta que los datos de la imagen son subjetivos, los que van a considerarse son los ingresados en la BD.</p>
-                                    @else
-                                        <p>Tener en cuenta que se trata de una imágen ilustrativa.</p>
-                                        <p class="text-bold">En este caso se trata de una imagen default</p>
-                                    @endisset
-                                </div>
+                                @if ($monitor->imagenes->count())
+                                    @foreach ($monitor->imagenes as $imagen)
+                                        <div class="col-12 col-md-6 my-2">
+                                            <div class="image-wrapper">
+                                                <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen del CPU">
+                                            </div>
+                                        </div>
+                                    @endforeach    
+                                @else
+                                    <p>No hay imágenes Asociadas al Monitor.</p>
+                                @endif
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
