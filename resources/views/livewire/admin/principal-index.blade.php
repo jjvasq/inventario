@@ -73,7 +73,8 @@
                         {{-- <th>Data</th>
                         <th>Descripción</th> --}}
                         <th class="text-bold text-info text-center">Info</th>
-                        <th>Conect</th>
+                        <th>En.Uso</th>
+                        {{-- <th>Conec</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -122,7 +123,7 @@
                                 @if ($puesto->conectada_rack)
                                     {{$puesto->numero_conmutador}}
                                 @else
-                                    <span class="badge bg-danger">No Conectado</span>
+                                    <span class="badge bg-danger">No Conect</span>
                                 @endif
                             </td>
                             {{-- <td>
@@ -226,14 +227,22 @@
                                     </a>
                                 </div>
                             </td>
-                            <td>
-                                @if ($puesto->conectada_rack == 1)
+                            <td style="text-align:center">
+                                @if ($puesto->conexion->en_uso == 1)
                                     <div class="btn btn-group btn-sm btn-default ml-2"> <i class="fas fa-check" style="color: green"></i></div>
                                 @else
                                     <div class="btn btn-group btn-sm btn-default ml-2"> <i class="fas fa-bolt" style="color: red"></i></div>
                                     {{-- <small class="text-danger">No</small> --}}
                                 @endif
                             </td>
+                            {{-- <td style="text-align:center">
+                                @if ($puesto->conexion->conectada_rack == 1)
+                                    <div class="btn btn-group btn-sm btn-default ml-2"> <i class="fas fa-check" style="color: green"></i></div>
+                                @else
+                                    
+                                    <span class="badge bg-danger">NO</span>
+                                @endif
+                            </td> --}}
 
                         </tr>
                     @endforeach

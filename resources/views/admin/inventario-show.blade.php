@@ -21,31 +21,70 @@
                             role="tab" aria-controls="conexion-desc" aria-selected="false">Conexión</a>
                         <a class="nav-item nav-link" id="equipamiento-desc-tab" data-toggle="tab" href="#equipamiento-desc"
                             role="tab" aria-controls="equipamiento-desc" aria-selected="false">Equipamiento</a>
+                        <a class="nav-item nav-link" id="imagenes-desc-tab" data-toggle="tab" href="#imagenes-desc"
+                            role="tab" aria-controls="imagenes-desc" aria-selected="false">Imágenes</a>
                     </div>
                 </nav>
-                <div class="tab-content p-3" id="nav-tabContent">
+                <div class="w-100 tab-content p-3" id="nav-tabContent">
                     <div class="tab-pane fade active show" id="puesto-desc" role="tabpanel"
-                        aria-labelledby="puesto-desc-tab">
-                        <h5><u> Descripción:</u></h5>
+                        aria-labelledby="puesto-desc-tab"">
+
+                        <div class="row">
+                            <div class="callout callout-info col-8 col-md-9">
+                                <h5><u> Descripción:</u></h5>
+                                @if ($puesto->descripcion != null)
+                                    <p>{{ $puesto->descripcion }}</p>
+                                @else
+                                    <p>Sin Detalle</p>
+                                @endif
+                            </div>
+                            
+                            <div class="col-4 col-md-3">
+                                <h5>Estado:</h5>
+                                @if ($puesto->estado == 1)
+                                    <button type="button" class="btn btn-success btn-block"><i class="fa fa-check"></i> Activo</button>
+                                @else
+                                    <button type="button" class="btn btn-danger btn-block"><i class="fa fa-bolt"></i> No Activo</button>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="callout callout-info col-6 col-md-8">
+                                <h5><u> Referencia (Ubicación):</u></h5>
+                                @if ($puesto->referencia_lugar != null)
+                                    <p>{{ $puesto->referencia_lugar }}</p>
+                                @else
+                                    <p class="text-danger"><em>Sin Detalle</em></p>
+                                @endif
+                            </div>
+                            
+                            <div class="col-6 col-md-4">
+                                <h5>Fecha Última Limpieza:</h5>
+                                <h5 class="text-danger">{{ $puesto->fecha_limpieza }}</h5>
+                            </div>
+                        </div>
+
+                        {{-- <h5><u> Descripción:</u></h5>
                         @if ($puesto->descripcion != null)
                             <p>{{ $puesto->descripcion }}</p>
                         @else
                             <p>Sin Detalle</p>
-                        @endif
-                        <h6><u>Estado:</u></h6>
+                        @endif --}}
+                        {{-- <h6><u>Estado:</u></h6>
                         @if ($puesto->estado == 1)
                             <p class="text-success">Activo</p>
                         @else
                             <p class="text-dark">No Activo</p>
-                        @endif
-                        <h6><u>Referencia (Ubicación):</u></h6>
+                        @endif --}}
+                        {{-- <h6><u>Referencia (Ubicación):</u></h6>
                         @if ($puesto->referencia_lugar != null)
                             <p>{{ $puesto->referencia_lugar }}</p>
                         @else
                             <p class="text-danger"><em>Sin Detalle</em></p>
                         @endif
                         <h6><u>Fecha última limpieza:</u></h6>
-                        <p class="text-danger">{{ $puesto->fecha_limpieza }}</p>
+                        <p class="text-danger">{{ $puesto->fecha_limpieza }}</p> --}}
                     </div>
                     <div class="tab-pane fade" id="sector-desc" role="tabpanel" aria-labelledby="sector-desc-tab">
                         @if ($puesto->sector_id != null)
@@ -386,6 +425,32 @@
                                 <p>Equipamiento en Reparación</p>
                             @endif
                         @endif
+                    </div>
+
+                    <div class="tab-pane fade" id="imagenes-desc" role="tabpanel" aria-labelledby="imagenes-desc-tab">
+                        <div class="row">
+                            @if ($puesto->imagenes->count())
+                                @foreach ($puesto->imagenes as $imagen)
+                                <div class="row">
+                                    <div class="col-12 mt-2">
+                                        <div class="callout callout-info mr-3">
+                                            <div class="image-wrapper">
+                                                <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen del Puesto de Trabajo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach    
+                            @else
+                                <p>No hay imágenes Asociadas al Puesto de Trabajo.</p>
+                            @endif
+                        </div>
+
+                        {{-- <div class="callout callout-info">
+                            <h5>Descripción:</h5>
+                            <p>{{$puesto->equipamiento->descripcion}}</p>
+                            <p>Fecha Actualización: {{$puesto->equipamiento->fecha_actualizacion}}</p>
+                        </div> --}}
                     </div>
                 </div>
             </div>

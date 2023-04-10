@@ -199,7 +199,7 @@
                                 @if ($puesto->estado == 1)
                                     <small class="text-bold text-success">Activo</small>
                                 @else
-                                    <small class="text-bold text-danger">No Activo</small>
+                                    <small class="text-bold text-danger">No-Act</small>
                                 @endif
                             </td>
                         </tr>

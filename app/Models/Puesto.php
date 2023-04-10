@@ -18,7 +18,7 @@ class Puesto extends Model
 
     //Relación uno a uno Conexión
     public function conexion(){
-        return $this->hasOne(Conexion::class);
+        return $this->belongsTo(Conexion::class);
     }
 
     //Relación uno a muchos inversa con Sector
