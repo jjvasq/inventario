@@ -54,7 +54,7 @@ class ImagenMonitorController extends Controller
             'file' => 'required|image',
         ]);
 
-        $imagenUrl = $request->file('file')->store('/monitores');
+        $imagenUrl = $request->file('file')->store('/public/monitores');
 
         //No utilizo la "url", porque después cuando busco la imagen, necesito el nombre nombre no más.
         $url = "/storage/" . $imagenUrl;

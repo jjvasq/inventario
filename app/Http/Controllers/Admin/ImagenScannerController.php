@@ -21,7 +21,7 @@ class ImagenScannerController extends Controller
             'file' => 'required|image',
         ]);
 
-        $imagenUrl = $request->file('file')->store('/scanners');
+        $imagenUrl = $request->file('file')->store('/public/scanners');
 
         $imagenScanner = ImagenScanner::create([
             'url' => $imagenUrl,

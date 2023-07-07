@@ -20,8 +20,8 @@ class ImagenCpuController extends Controller
             'file' => 'required|image',
         ]);
 
-        /* $imagenUrl = $request->file('file')->store('/cpus'); */
-        $imagenUrl = Storage::put('cpus',$request->file('file'));
+        $imagenUrl = $request->file('file')->store('/public/cpus');
+        /* $imagenUrl = Storage::put('cpus',$request->file('file')); */
 
         $imagenCpu = ImagenCpu::create([
             'url' => $imagenUrl,

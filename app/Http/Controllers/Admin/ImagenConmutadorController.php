@@ -20,7 +20,7 @@ class ImagenConmutadorController extends Controller
             'file' => 'required|image',
         ]);
 
-        $imagenUrl = $request->file('file')->store('/conmutadores');
+        $imagenUrl = $request->file('file')->store('/public/conmutadores');
 
         $imagenConmutador = ImagenConmutador::create([
             'url' => $imagenUrl,

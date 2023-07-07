@@ -21,7 +21,7 @@ class ImagenPuestoController extends Controller
             'file' => 'required|image',
         ]);
 
-        $imagenUrl = $request->file('file')->store('/puestos');
+        $imagenUrl = $request->file('file')->store('/public/puestos');
 
         $imagenPuesto = ImagenPuesto::create([
             'url' => $imagenUrl,

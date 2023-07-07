@@ -21,7 +21,7 @@ class ImagenImpresoraController extends Controller
             'file' => 'required|image',
         ]);
 
-        $imagenUrl = $request->file('file')->store('/impresoras');
+        $imagenUrl = $request->file('file')->store('/public/impresoras');
 
         $imagenImpresora = ImagenImpresora::create([
             'url' => $imagenUrl,

@@ -21,7 +21,7 @@ class ImagenRackController extends Controller
             'file' => 'required|image',
         ]);
 
-        $imagenUrl = $request->file('file')->store('/racks');
+        $imagenUrl = $request->file('file')->store('/public/racks');
 
         $imagenRack = ImagenRack::create([
             'url' => $imagenUrl,
