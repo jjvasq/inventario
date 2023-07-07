@@ -91,9 +91,10 @@
                             <div class="row">
                                 @if ($monitor->imagenes->count())
                                     @foreach ($monitor->imagenes as $imagen)
+                                        <p>{{'storage/'.$imagen->url}}</p>
                                         <div class="col-12 col-md-6 my-2">
                                             <div class="image-wrapper">
-                                                <img class="img-fluid rounded-sm" id="picture" src="{{Storage::url($imagen->url)}}" alt="Imagen del CPU">
+                                                <img class="img-fluid rounded-sm" id="picture" src="asset({{('storage/'.$imagen->url)}})"" alt="Imagen del CPU">
                                             </div>
                                         </div>
                                     @endforeach    
