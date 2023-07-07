@@ -14,6 +14,6 @@ class ImagenRack extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function rack(){
-        return $this->belongsTo(Impresora::class);
+        return $this->belongsTo(Rack::class);
     }
 }
